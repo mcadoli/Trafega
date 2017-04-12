@@ -1,0 +1,22 @@
+{
+  "name": "GameFare",
+  "description": "",
+  "authors": [
+    "Marcela Oliveira <m.cadoli@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
+
+
