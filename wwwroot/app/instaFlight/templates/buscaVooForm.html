@@ -31,6 +31,7 @@
             </div>
         </div>
         <div id="main" ng-controller="buscaVooFormController">
+           
                 <h1 class="page-title">Dê um play nas suas experiênicas!</h1>
                 <h2 class="page-description col-md-6 no-float no-padding">Escolha seu destino e comece o jogo.</h2>
                 <div class="search-box-wrapper style2" >
@@ -45,27 +46,30 @@
                             </ul>
                         </div>
                         <div class="search-tab-content">
-                                <form name='frmBusvaVoo'">
+                            <form name="formVooRq">
                                     <h4 class="title">Escolha seu destino:</h4>
                                     
                                     <div div class="col-md-3">
-                                        <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.idaVolta'> Ida e Volta
+                                        <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.IdaVolta'> Ida e Volta
                                     </div>
                                     <div div class="col-md-6">
-                                        <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.somenteVoosDiretos'> Somente voos diretos
+                                        <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.SomenteVoosDiretos'> Somente voos diretos
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <div class="form-group">
-                                                <input type="text" class="input-text full-width" placeholder="Leaving From (city, distirct or specific airpot)" ng-model='vooRq.localPartida' />
+                                            <div class="form-group"> 
+                                                 <!--<input type="text" class="input-text full-width" placeholder="Leaving From (city, distirct or specific airpot)" ng-model='vooRq.LocalPartida' />-->
+                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Partida" pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' />
                                             </div>                                               
                                         </div>
                                             <div class="col-md-3">
-                                                <div class="form-group row">                                                        
-                                                        <div class="datepicker-wrap">
-                                                            <input type="text" name="date_from" class="input-text full-width" placeholder="Departing On" ng-model='vooRq.dataPartida' />
-                                                    </div>                                                       
+                                                <div class="form-group row">  
+                                                         <input type="date" class="input-text full-width" ng-model='vooRq.DataPartida' value="{{ date | date: 'DD/MM/YY' }}" />                                                      
+                                                        <!--<div class="datepicker-wrap" id="dataPartida">
+                                                            <input type="text" name="date_from" class="input-text full-width" placeholder="Data Partida" ng-model='vooRq.DataPartida' /> 
+                                                           
+                                                        </div> -->
+                                                        <!--<input type="date" name="date_from" class="input-text full-width" placeholder="Data Partida" ng-model='vooRq.DataPartida' input-datepicker /> -->                                                     
 
                                                 </div>
                                             </div>
@@ -74,15 +78,16 @@
                                     <div class="row">                                          
                                         <div class="col-md-9">                                                
                                             <div class="form-group">
-                                                <input type="text" class="input-text full-width" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.localChegada' />
+                                                 <!--<input type="text" class="input-text full-width" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.LocalChegada' />-->
+                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' />
                                             </div>
                                         </div>
                                             
                                             <div class="col-md-3">
-                                                <div class="form-group row">
-                                                        <div class="datepicker-wrap">
-                                                            <input type="text" name="date_to" class="input-text full-width" placeholder="Arriving On" ng-model='vooRq.dataChegada' />
-                                                        </div>                                                     
+                                                <div class="form-group row">  
+                                                    <div class="datepicker-wrap">
+                                                        <input type="text" id="dataChegada" name="date_to" class="input-text full-width" placeholder="Data Chegada" ng-model='vooRq.DataChegada' />
+                                                    </div>                                                 
                                                 </div>
                                             </div>
                                     </div>  
@@ -90,15 +95,12 @@
                                         <div class="col-xs-4">  </div>
                                         <div class="col-xs-4">
                                             <div class="form-group row">  
-                                                <button class="full-width">
-                                                    <a class="full-width" href="{{ 'buscaVoo' | route:{vooRq: vooRq.localPartida } }}"  class="btn btn-primary btn-lg btn-block">BUSCAR</a>
-                                                
-                                                </button>   
+                                                <button ng-click="buscarVoos(vooRq)" class="btn btn-primary btn-lg btn-block">BUSCAR</button>
                                             </div>
                                         </div>
                                         <div class="col-xs-4">  </div>
-                                    </div>
-                                </form>
+                                    </div> 
+                                    </form>
                         </div> 
                     </div>
                     </div>    

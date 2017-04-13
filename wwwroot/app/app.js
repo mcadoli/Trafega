@@ -39,6 +39,7 @@
         // , 'angular-linq'           //Extensões do tipo LINQ disponíveis para angular (https://github.com/Angular-Public/angular-linq)
         // , 'highcharts-ng'          //Módulo de exibição de gráficos (https://github.com/pablojim/highcharts-ng)
         // , 'angular.filter'         //Diversos filtros extras e úteis para o angular (https://github.com/a8m/angular-filter)
+        ,'ui.calendar'
       
        
     ])
@@ -73,6 +74,12 @@
                     templateUrl: '/app/instaFlight/templates/pageError.html',
                     controller: '',
                     name: 'errorPage'
+                }).otherwise({ redirectTo: "/" }); 
+
+                routerProvider.when('/inputAutocomplete', {
+                    templateUrl: '/app/instaFlight/templates/inputAutocomplete.html',
+                    controller: '',
+                    name: 'inputAutocomplete'
                 }).otherwise({ redirectTo: "/" });     
 
             }]);       

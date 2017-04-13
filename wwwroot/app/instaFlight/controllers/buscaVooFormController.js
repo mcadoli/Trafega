@@ -3,30 +3,40 @@
     angular
         .module('gameFareApp')
         .controller('buscaVooFormController', 
-            ['$rootScope', '$scope', '$location', '$routeParams', 'vooService', 
-                function ($rootScope, $scope, $location, $routeParams, vooService) {
-                    console.log('Entrou no controller instaFlight'); 
+            ['$rootScope', '$scope', '$location', '$routeParams', 'vooService', '$http',
+                function ($rootScope, $scope, $location, $routeParams, vooService, $http) {
+                    console.log('Entrou no controller instaFlight');  
+
                     $scope.voosResponse = [];
-                    $rootScope.vooRq = novoVoo();
+                    $scope.vooRq = novoVoo(); 
                     $scope.voos = [];
-                   
+                    
+                    
+                    $http.get('airports.json').success(function(data){
+                        $scope.airports = data;
+                    });
+
                     $scope.buscarVoos = function(vooRq){
-                            vooService.search(vooRq).then(function(vooResponse){
-                            console.log(vooResponse.AeroportaChegada);
-                            $scope.voos.push(vooResponse.Voo);
-                        });   
-                    }
-                }]);  
+                        vooRq.LocalPartida = vooRq.LocalPartida.description;
+                        vooRq.LocalChegada = vooRq.LocalChegada.description;
+                        console.log('Entrou no buscarVoos' + vooRq.LocalPartida + vooRq.DataPartida);   
+                        window.sessionStorage.setItem('vooRq', JSON.stringify($scope.vooRq));
+                        //window.location.href='/buscaVoo';  
+                    } 
+
+                   
+                }]);   
+                
 })();
 
 function novoVoo() 
 {
     return{
-        localPartida: '', 
-        localChegada: '',
-        dataPartida: '',
-        dataChegada: '',
-        somenteVoosDiretos: false,
-        idaVolta: true
+        LocalPartida: '', 
+        LocalChegada: '',
+        DataPartida: '',
+        DataChegada: '',
+        SomenteVoosDiretos: false,
+        IdaVolta: true
     }
 }

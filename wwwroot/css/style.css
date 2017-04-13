@@ -12768,7 +12768,9 @@ input.input-text:focus, textarea:focus, .selector select:focus + .custom-select 
 
 /* estilo customizado */
 /* teste aposta */
-
+.form-control.input-date {
+        width: 100px;
+}
 .output1{
     font-size: 5em;
     font-family: "Dosis", Helvetica, Arial, sans-serif; 

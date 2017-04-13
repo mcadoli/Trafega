@@ -1,5 +1,5 @@
 {
-  "name": "GameFare",
+  "name": "Trafega",
   "description": "",
   "authors": [
     "Marcela Oliveira <m.cadoli@gmail.com>"
@@ -16,7 +16,30 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-ui-mask": "1.6.4",
+    "angular-loading-bar": "~0.8.0",
+    "restangular": "~1.5.1",
+    "angular-route": "~1.4.9",
+    "angular-named-routes": "~0.0.16",
+    "bootstrap-sass": "~3.3.6",
+    "angular-strap": "~2.3.7",
+    "angular-motion": "~0.4.3",
+    "angular-animate": "~1.4.0",
+    "angular-i18n": "~1.5.0",
+    "lodash": "3.10.1",
+    "angular-sanitize": "~1.4.0",
+    "angular-linq": "^1.0.2",
+    "highcharts-ng": "^0.0.11",
+    "highstock": "highstock-release#^4.2.3",
+    "angular-moment": "^0.10.3",
+    "angular-input-masks": "^2.3.0",
+    "ng-file-upload": "^12.0.4",
+    "jquery-infinite-scroll": "infinite-scroll#^2.1.0",
+    "ngInfiniteScroll": "^1.2.2",
+    "angular-filter": "^0.5.8",
+    "angular-ui-calendar": "~1.0.2"
+  }
 }
-
-

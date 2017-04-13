@@ -9,7 +9,7 @@ if (typeof Pace != "undefined") {
     var soapPageLoadingContent = false;
     //document.write('<img alt="" src="images/logo2.png" style="display: none;">');
     var logoImg = new Image();
-    logoImg.src = "images/logo2.png";
+    logoImg.src = "images/Logo.png";
     var soapPageLoadingProgressInterval = setInterval(function() {
         try {
             if (document.body.className.indexOf("pace-done") != -1) {

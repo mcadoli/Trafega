@@ -17,6 +17,12 @@
                     $scope.valorMinTempoResposta = 0;
                     $scope.valorMaxTempoResposta = 72;
                     $scope.showModal = false;
+
+                    $scope.init = function(){                   
+                        $rootScope.vooRq = JSON.parse(window.sessionStorage.getItem('vooRq'));
+                        window.sessionStorage.removeItem('vooRq');
+                    }
+                    $scope.init();
                     
                     $scope.openDetails = function(segmento) {
                         console.log('Entrou no modal: ' + segmento.Id);
@@ -25,8 +31,7 @@
                         $scope.showModal = true;
                     };
 
-                    
-                    $rootScope.vooRq = {LocalPartida:'LAX', LocalChegada:'JFK', DataPartida: '2017/04/11', DataChegada: '2017/04/12'};
+                    /*$rootScope.vooRq = {LocalPartida:'LAX', LocalChegada:'JFK', DataPartida: '2017/04/11', DataChegada: '2017/04/12'};*/
                     vooService.search($rootScope.vooRq).then(function(vooResponse){ 
                         angular.forEach(vooResponse, function(value, key){
                              $scope.voos.push(value);  
