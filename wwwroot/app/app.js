@@ -7,6 +7,7 @@
     angular.module('app.factories', []);
     angular.module('app.providers', []);
     angular.module('app.filters', []);
+    angular.module('demo', []);
    
 
     //Main app
@@ -39,7 +40,12 @@
         // , 'angular-linq'           //Extensões do tipo LINQ disponíveis para angular (https://github.com/Angular-Public/angular-linq)
         // , 'highcharts-ng'          //Módulo de exibição de gráficos (https://github.com/pablojim/highcharts-ng)
         // , 'angular.filter'         //Diversos filtros extras e úteis para o angular (https://github.com/a8m/angular-filter)
-        ,'ui.calendar'
+        //,'ui.calendar'
+        ,'demo.dateRangeController', 
+        'ui.bootstrap.datetimepicker'
+        
+        
+       
       
        
     ])
@@ -80,7 +86,21 @@
                     templateUrl: '/app/instaFlight/templates/inputAutocomplete.html',
                     controller: '',
                     name: 'inputAutocomplete'
-                }).otherwise({ redirectTo: "/" });     
+                }).otherwise({ redirectTo: "/" }); 
+
+                //Bootrstrap UI - Datepicker
+                /*angular.extend(datepickerProvider.defaults, {
+                    templateUrl: '/app/instaFlight/templates/calendarTemplate.html',
+                    placement: 'bottom-right',
+                    container: 'body',
+                    dateFormat: 'dd/MM/yyyy',
+                    autoclose: true,
+                    useNative: true,
+                    startWeek: 1,
+                    animation: false,
+                    iconLeft: 'glyphicon glyphicon-menu-left',
+                    iconRight: 'glyphicon glyphicon-menu-right'
+                });   */ 
 
             }]);       
        

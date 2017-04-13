@@ -17,7 +17,8 @@
     
     <!-- Theme Styles -->
     
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/dalelotts/angular-bootstrap-datetimepicker/master/src/css/datetimepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/animate.min.css">
@@ -220,14 +221,16 @@
 
 
     <!-- Javascript -->
-        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.0.2.min.js"></script>
+        <script type="text/javascript" src="/bower_components/min/moment.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jquery.noconflict.js"></script>
         <script type="text/javascript" src="js/modernizr.2.7.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
-       <script type="text/javascript" src="js/jquery.placeholder.js"></script>
+        <script type="text/javascript" src="js/jquery.placeholder.js"></script>
         <script type="text/javascript" src="js/jquery-ui.1.10.4.min.js"></script>
         <!-- Twitter Bootstrap -->
-        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <!--<script type="text/javascript" src="js/bootstrap.js"></script>-->
 
         <!-- load revolution slider scripts -->
         <script type="text/javascript" src="components/revolution_slider/js/jquery.themepunch.tools.min.js"></script>
@@ -251,7 +254,7 @@
 
         <script type="text/javascript" src="js/pace.min.js" data-pace-options='{ "ajax": false }'></script>
         <script type="text/javascript" src="js/page-loading.js"></script>
-
+        
         <!-- Rotação da imagem de fundo da página principal -->
         <script type="text/javascript">
             tjq(".flexslider").flexslider({
@@ -264,11 +267,12 @@
             });
         </script>
 
+        
 
         <!--Others-->
         <script src="/bower_components/lodash/lodash.js"></script>
         <script src="/bower_components/jquery/dist/jquery.js"></script>
-        
+       
         <!--Angular-->
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-i18n/angular-locale_pt-br.js"></script>
@@ -295,7 +299,12 @@
         <script src="/bower_components/angular-ui-calendar/src/calendar.js"></script>
         <script src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
         <script src="/bower_components/fullcalendar/dist/gcal.js"></script>
-        
+      
+      
+        <script type="text/javascript" src="js/datetimepicker.js"></script>
+        <script type="text/javascript" src="js/datetimepicker.templates.js"></script>
+
+       
         <!--App-->
         
         <!-- inject:js -->
@@ -321,7 +330,7 @@
         <script src="/app/instaFlight/controllers/messagesController.js"></script>
         <script src="/app/instaFlight/controllers/buscaVooFormController.js"></script>
         <script src="/app/instaFlight/controllers/buscaVooController.js"></script>
-    
+        <script src="/app/instaFlight/controllers/demo.dateRangeController.js"></script>
 </body>
 </html>
 

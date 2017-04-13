@@ -46,7 +46,7 @@
                             </ul>
                         </div>
                         <div class="search-tab-content">
-                            <form name="formVooRq">
+                            <form name="frmVooRq">
                                     <h4 class="title">Escolha seu destino:</h4>
                                     
                                     <div div class="col-md-3">
@@ -59,18 +59,22 @@
                                         <div class="col-md-9">
                                             <div class="form-group"> 
                                                  <!--<input type="text" class="input-text full-width" placeholder="Leaving From (city, distirct or specific airpot)" ng-model='vooRq.LocalPartida' />-->
-                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Partida" pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' />
+                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Partida" pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' required />
                                             </div>                                               
                                         </div>
                                             <div class="col-md-3">
                                                 <div class="form-group row">  
-                                                         <input type="date" class="input-text full-width" ng-model='vooRq.DataPartida' value="{{ date | date: 'DD/MM/YY' }}" />                                                      
-                                                        <!--<div class="datepicker-wrap" id="dataPartida">
-                                                            <input type="text" name="date_from" class="input-text full-width" placeholder="Data Partida" ng-model='vooRq.DataPartida' /> 
-                                                           
-                                                        </div> -->
-                                                        <!--<input type="date" name="date_from" class="input-text full-width" placeholder="Data Partida" ng-model='vooRq.DataPartida' input-datepicker /> -->                                                     
-
+                                                        <div class="dropdown">
+                                                            <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" ng-model='vooRq.DataPartida' class="input-text full-width" placeholder="Data Partida" >
+                                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                                </div>
+                                                            </a>
+                                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                <datetimepicker ng-model='vooRq.DataPartida' data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'day' }"  required></datetimepicker>
+                                                            </ul>
+                                                        </div>
                                                 </div>
                                             </div>
                                         
@@ -79,15 +83,23 @@
                                         <div class="col-md-9">                                                
                                             <div class="form-group">
                                                  <!--<input type="text" class="input-text full-width" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.LocalChegada' />-->
-                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' />
+                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' ng-required="required" />
                                             </div>
                                         </div>
                                             
                                             <div class="col-md-3">
                                                 <div class="form-group row">  
-                                                    <div class="datepicker-wrap">
-                                                        <input type="text" id="dataChegada" name="date_to" class="input-text full-width" placeholder="Data Chegada" ng-model='vooRq.DataChegada' />
-                                                    </div>                                                 
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" ng-model='vooRq.DataPartida' class="input-text full-width" placeholder="Data Chegada" ng-required="required">
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                            </div>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                            <datetimepicker ng-model='vooRq.DataChegada' data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'day' }"  ></datetimepicker>
+                                                        </ul>
+                                                    </div>                                               
                                                 </div>
                                             </div>
                                     </div>  
@@ -95,7 +107,7 @@
                                         <div class="col-xs-4">  </div>
                                         <div class="col-xs-4">
                                             <div class="form-group row">  
-                                                <button ng-click="buscarVoos(vooRq)" class="btn btn-primary btn-lg btn-block">BUSCAR</button>
+                                                <button ng-click="buscarVoos(vooRq)" class="full-width" ng-disabled="frmVooRq.$invalid">BUSCAR</button>
                                             </div>
                                         </div>
                                         <div class="col-xs-4">  </div>
@@ -120,4 +132,5 @@
             slideshowSpeed: 5000
         });
     </script>
-    <script type="text/javascript" src="js/theme-scripts.js"></script> 
+    
+   

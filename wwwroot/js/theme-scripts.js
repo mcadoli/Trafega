@@ -383,42 +383,7 @@ function changeTraveloElementUI() {
         }
     });
 
-    // datepicker
-    tjq('.datepicker-wrap input').each(function() {
-        var minDate = tjq(this).data("min-date");
-        if (typeof minDate == "undefined") {
-            minDate = 0;
-        }
-        tjq(this).datepicker({
-            showOn: 'button',
-            buttonImage: 'images/icon/blank.png',
-            buttonText: '',
-            buttonImageOnly: true,
-            changeYear: false,
-            showOtherMonths: true,
-            minDate: minDate,
-            dateFormat: "dd/mm/yy",
-            dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
-            beforeShow: function(input, inst) {
-                var themeClass = tjq(input).parent().attr("class").replace("datepicker-wrap", "");
-                tjq('#ui-datepicker-div').attr("class", "");
-                tjq('#ui-datepicker-div').addClass("ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all");
-                tjq('#ui-datepicker-div').addClass(themeClass);
-            },
-            onClose: function(selectedDate) {
-                if ( tjq(this).attr('name') == 'date_from' ) {
-                    if ( tjq(this).closest('form').find('input[name="date_to"]').length > 0 ) {
-                        tjq(this).closest('form').find('input[name="date_to"]').datepicker("option", "minDate", selectedDate);
-                    }
-                }
-                if ( tjq(this).attr('name') == 'date_to' ) {
-                    if ( tjq(this).closest('form').find('input[name="date_from"]').length > 0 ) {
-                        tjq(this).closest('form').find('input[name="date_from"]').datepicker("option", "maxDate", selectedDate);
-                    }
-                }
-            }
-        });
-    });
+    
     
     // placeholder for ie8, 9
     try {
