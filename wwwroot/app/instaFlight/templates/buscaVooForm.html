@@ -31,7 +31,6 @@
             </div>
         </div>
         <div id="main" ng-controller="buscaVooFormController">
-           
                 <h1 class="page-title">Dê um play nas suas experiênicas!</h1>
                 <h2 class="page-description col-md-6 no-float no-padding">Escolha seu destino e comece o jogo.</h2>
                 <div class="search-box-wrapper style2" >
@@ -46,8 +45,12 @@
                             </ul>
                         </div>
                         <div class="search-tab-content">
-                            <form name="frmVooRq">
+                            <form name="frmVooRq" novalidate>
                                     <h4 class="title">Escolha seu destino:</h4>
+
+                                    <div ng-if="frmVooRq.dataPartida > frmVooRq.dataChegada">
+                                            A data de partida deve ser menor que a data de chegada.
+                                    </div>
                                     
                                     <div div class="col-md-3">
                                         <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.IdaVolta'> Ida e Volta
@@ -55,17 +58,30 @@
                                     <div div class="col-md-6">
                                         <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.SomenteVoosDiretos'> Somente voos diretos
                                     </div>
+                                    
                                     <div class="row">
-                                        <div class="col-md-9">
+                                        <div class="col-md-8">
                                             <div class="form-group"> 
                                                  <!--<input type="text" class="input-text full-width" placeholder="Leaving From (city, distirct or specific airpot)" ng-model='vooRq.LocalPartida' />-->
-                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Partida" pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' required />
-                                            </div>                                               
+                                                <angucomplete inputClass="form-control" nameField="localPartida" placeholder="Local de Partda" id="ex1"  pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' required />   
+                                                <div ng-show="frmVooRq.localPartida.$submitted || frmVooRq.localPartida.$touched">
+                                                    <div ng-show="frmVooRq.localPartida.$error.required">
+                                                           <h6 class="color-text-error"> O local de partida é necessário.</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                                         
                                         </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group row">  
+                                            <div class="col-md-4">
+                                                <input type="date" name="dataPartida" class="form-control" placeholder="Data Partida" ng-model='vooRq.DataPartida' min="{{ minDataPartida | date:'yyyy-MM-dd' }}" required />
+                                                <div ng-show="frmVooRq.dataPartida.$submitted || frmVooRq.dataPartida.$touched">
+                                                    <div ng-show="frmVooRq.dataPartida.$error.required">
+                                                            <h6 class="color-text-error">A data de partida é necessária.</h6>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="form-group row">  
                                                         <div class="dropdown">
-                                                            <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                            <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#"><i class="glyphicon glyphicon-calendar"></i></span>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control" ng-model='vooRq.DataPartida' class="input-text full-width" placeholder="Data Partida" >
                                                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -75,44 +91,58 @@
                                                                 <datetimepicker ng-model='vooRq.DataPartida' data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'day' }"  required></datetimepicker>
                                                             </ul>
                                                         </div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         
                                     </div>
                                     <div class="row">                                          
-                                        <div class="col-md-9">                                                
+                                        <div class="col-md-8">                                                
                                             <div class="form-group">
-                                                 <!--<input type="text" class="input-text full-width" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.LocalChegada' />-->
-                                                <angucomplete  inputClass="input-text full-width" id="ex1" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' ng-required="required" />
-                                            </div>
-                                        </div>
-                                            
-                                            <div class="col-md-3">
-                                                <div class="form-group row">  
-                                                    <div class="dropdown">
-                                                        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" ng-model='vooRq.DataPartida' class="input-text full-width" placeholder="Data Chegada" ng-required="required">
-                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                            </div>
-                                                        </a>
-                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model='vooRq.DataChegada' data-datetimepicker-config="{ dropdownSelector: '#dropdown1', minView: 'day' }"  ></datetimepicker>
-                                                        </ul>
-                                                    </div>                                               
+                                                 <!--<input type="date" class="form-control" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.LocalChegada' />-->
+                                                <angucomplete  nameField="localChegada" inputClass="form-control" id="ex2" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' required />
+                                                <div ng-show="frmVooRq.localChegada.$submitted || frmVooRq.localChegada.$touched">
+                                                    <div ng-show="frmVooRq.localChegada.$error.required">
+                                                            <h6 class="color-text-error">O local de chegada é necessário.</h6>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>  
+                                        <div class="col-md-4">
+                                            <!--<div class="form-group row">  
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" ng-model='vooRq.DataPartida' class="input-text full-width" placeholder="Data Chegada" ng-required="required">
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                        </div>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <datetimepicker ng-model='vooRq.DataChegada' data-datetimepicker-config="{ dropdownSelector: '#dropdown2', minView: 'day' }"  ></datetimepicker>
+                                                    </ul> 
+                                                    
+                                                </div> -->
+                                                <!--<input-datepicker ng-model="dtpValue1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-readonly="true"></input-datepicker>--> 
+                                                <input type=date name="dataChegada" class="form-control" placeholder="Data Chegada" ng-model='vooRq.DataChegada' min="{{ minDataChegada | date:'yyyy-MM-dd' }}" required  />   
+                                                <div ng-show="frmVooRq.dataChegada.$submitted || frmVooRq.dataChegada.$touched">
+                                                    <div ng-show="frmVooRq.dataChegada.$error.required">
+                                                       <h6 class="color-text-error"> A data de chegada é necessária.</h6>
+                                                    </div>  
+                                                </div>                                      
+                                        </div>  
                                     </div>  
                                     <div class="row">
                                         <div class="col-xs-4">  </div>
                                         <div class="col-xs-4">
                                             <div class="form-group row">  
-                                                <button ng-click="buscarVoos(vooRq)" class="full-width" ng-disabled="frmVooRq.$invalid">BUSCAR</button>
+                                                <button ng-click="buscarVoos(vooRq, frmVooRq)" class="full-width" >BUSCAR</button>
                                             </div>
                                         </div>
                                         <div class="col-xs-4">  </div>
                                     </div> 
-                                    </form>
+                                    <pre>
+                                       {{vooRq | json }} 
+                                    </pre>
+                                </form>
                         </div> 
                     </div>
                     </div>    

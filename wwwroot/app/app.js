@@ -24,7 +24,7 @@
         , 'app.filters'
         //3rd Party Modules
         // , 'angularMoment'          //Para tratamento de datas (ranges, formatação etc) (https://github.com/urish/angular-moment)
-         , 'ngFileUpload'           //Para upload de arquivos (https://github.com/danialfarid/ng-file-upload)
+         //, 'ngFileUpload'           //Para upload de arquivos (https://github.com/danialfarid/ng-file-upload)
         // , 'angular-loading-bar'    //Interceptor para gerar o loading quando houver requisições (https://github.com/chieffancypants/angular-loading-bar)
         // , 'ngSanitize'             //Necessário para "sanitize" o HTML (https://docs.angularjs.org/api/ngSanitize)
         // , 'infinite-scroll'        //Paginação infinita (http://sroze.github.io/ngInfiniteScroll/)
@@ -41,13 +41,10 @@
         // , 'highcharts-ng'          //Módulo de exibição de gráficos (https://github.com/pablojim/highcharts-ng)
         // , 'angular.filter'         //Diversos filtros extras e úteis para o angular (https://github.com/a8m/angular-filter)
         //,'ui.calendar'
-        ,'demo.dateRangeController', 
-        'ui.bootstrap.datetimepicker'
-        
-        
-       
-      
-       
+        //,'demo.dateRangeController'
+        //,'ui.bootstrap.datetimepicker'
+        ,'ui.bootstrap'
+ 
     ])
         
         //Global variables
