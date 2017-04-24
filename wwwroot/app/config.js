@@ -1,2 +1,2 @@
 angular.module("gameFareApp")
-.constant("EnvironmentConfig", {"api":"http://localhost:7935/"});
+.constant("EnvironmentConfig", {"api":"http://localhost:7935"});

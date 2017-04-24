@@ -1,0 +1,136 @@
+ <section id="content" ng-controller="buscaVooController">
+    <form name="formAposta" class="container">
+        <div id="main">
+            <div class="row">
+                <div class="col-sm-8 col-md-9">
+                    <!-- Inicio Lista -->
+                    <div class="flight-list listing-style3 flight">
+                        <article class="box" ng-repeat="voo in voos">
+                            <!--Começa Trechos -->
+                            <div class="details col-xs-9 col-sm-9"  >
+                                <table class="table" ng-repeat="trecho in voo.Trechos">
+                                    <thead class="thead-default">
+                                        <tr bgcolor="#D9D9D9">
+                                            <th bgcolor="#01B7F2" class="cabecalho"><img src="images/{{trecho.DirecaoVoo}}.png" class="img-responsive"></th>
+                                            <th>Quinta</br> <a class="destaque">{{trecho.DataPartida | date:'dd/MM/yyyy' }}</a></th>
+                                            <th>Rio de Janeiro </br><a class="destaque"> {{trecho.AeroportoPartida}}</a></th>
+                                            <th class="cabecalho"><img src="images/Seta.png" class="img-responsive"></th>
+                                            <th>Campinhas </br><a class="destaque"> {{trecho.AeroportoChegada}}</a></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="segmento in trecho.Segmentos">
+                                            <td class="cabecalho"><input type="radio" name="options" id="option1" autocomplete="off" checked></td>
+                                            <td class="cabecalho"><img src="images/Azul.gif" class="img-responsive"></td>
+                                            
+                                            <td>{{segmento.DataPartida | date:'dd/MM/yyyy HH:mm'}}</td>
+                                            <td>{{segmento.QtdParadas + ' paradas '}} </td>
+                                            <td>{{segmento.DataChegada | date:'dd/MM/yyyy HH:mm'}}</td>
+                                            <td class="cabecalho"><a href="#detalhes_voo" ng-click="openDetails(segmento)" class="goto-login soap-popupbox">ver detalhes</a></td> 
+                                        </tr>  
+                                    </tbody>
+                                </table>
+                                <!--Começa aposta-->
+                                <div class="well">
+                                    <div class="row">
+                                        <div class="col-md-6" >
+                                            <div class="col-md-12 "><h3>Valor aposta</h3>
+                                                    <input type="range" name="range" ng-model="valorAposta" min="{{valorMinAposta}}"  max="{{valorMaxAposta}}"><br/>
+                                                    <input type="text" ng-model="valorAposta">
+                                            </div>   
+                                        </div> 
+                                        <div class="col-md-6" >
+                                            <div class="col-md-12 "><h3>Limite Resposta</h3> 
+                                                <input type="range" name="range" ng-model="valorTempoResposta" min="{{valorMinTempoResposta}}"  max="{{valorMaxTempoResposta}}"><br/>
+                                                <input type="text" ng-model="valorTempoResposta">
+                                            </div>   
+                                        </div> 
+                                    </div>  
+                                </div>        
+                            <!-- Termina aposta-->    
+                            </div>   
+                            <!--Termina Trechos-->  
+                                
+                            <div class="seperator"></div>  
+                            
+                            <div class="details col-xs-3 col-sm-3">
+                                <div class="details-wrapper"> 
+                                        <div class="posicao_na_div">
+                                            <p class="estilo_total_Por_Pessoa">Total Por Pessoa </p>                                                    
+                                        </div>
+                                        <div class="posicao_na_div">
+                                            <small class="estilo_small">Passagem ida + volta</small>
+                                        </div>                                              
+                                                </br>                                         
+                                        <div class="posicao_na_div" id="vl_total">
+                                            <label class="estilo_total" id="total_pessoa" >{{voo.ValorTotal}}</label>
+                                        </div>
+                                        <div class="posicao_na_div">
+                                            <smal class="estilo_small ">Taxas a incluir</smal></p>
+                                        </div></br>
+                                        
+                                        <div class="action " >
+                                            <a href="#travelo-login_aposta" class="goto-login soap-popupbox"><img src="images/btn_apostar.png"   ng-click="apostar(voo, valorAposta, valorTempoResposta);"></a>
+                                            
+                                        </div>
+                                </div>     
+                            </div>                
+                        </article>
+                    </div> 
+                    <!-- Fim Lista -->      
+                </div>
+            </div>
+         </div>  
+         <div modal="showModal" id="detalhes_voo" class="travelo-login-box_detalhes travelo-box" >
+            <h1>Detalhes do Voo</br><small> De {{segmentoDetail.AeroportoPartida}} a {{segmentoDetail.AeroportoChegada}}
+            Voo - nº {{segmentoDetail.NumeroVoo}} - Classe Econômica - {{segmentoDetail.SiglaCompanhia}}</small></h1> 
+            </br>                                                         
+            Saída: {{segmentoDetail.DataPartida | date:'dd/MM/yyyy' }} | Sexta Feira | Horário: {{segmentoDetail.DataPartida | date:'HH:mm'}} - Local: Rio de Janeiro | Aeroporto Santos Dumont - {{segmentoDetail.AeroportoPartida}} </br>	Chegada: {{segmentoDetail.DataChegada | date:'dd/MM/yyyy'}} | Sexta Feira | Horário: {{segmentoDetail.DataChegada | date:'HH:mm'}} - Local: São Paulo | Aeroporto Internacional Guarulhos - {{segmentoDetail.AeroportoChegada}}
+
+            </br>                                                        
+            Percentuais de atrasos e cancelamentos de vôos</br>
+            4,35% de atraso com mais de 30 minutos</br>
+            4,35% de atraso com mais de 40 minutos</br>
+            23,33% de cancelamentos</br></br>
+                                                                    
+            A Submarino Viagens disponibiliza em cumprimento à Resolução ANAC 218 - que estabelece a tranparência e divulgação dos percentuais de atrasos e cancelamento de voos do transporte aéreo de passageiros no Brasil, o link com as estatísticas fornecidas pela Agência Nacional de Aviação Civil: anac.gov.br/atrasosecancelamentos.Lembramos que a informação estará disponível mensalmente e refere-se sempre ao mês anterior.
+        </div> 
+    </form>  
+
+    <div modal="showModal" id="travelo-login_aposta" class="travelo-login-box travelo-box">
+            <div class="login-social">
+                <a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+                <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+            </div>
+            <div class="seperator"><label>OR</label></div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="input-text full-width" placeholder="email address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="input-text full-width" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <a href="#" class="forgot-password pull-right">Forgot password?</a>
+                    <div class="checkbox checkbox-inline">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div class="seperator"></div>
+            <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+    </div>  
+</section>
+
+    
+
+    
+        
+
+        
+
+        
+       

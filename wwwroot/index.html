@@ -108,16 +108,17 @@
             </div>  
             <!--Global messages for messages factory--> 
             <div ng-controller="globalMessagesController" class="ng-cloak">
-                <div ng-repeat="message in messages" class="alert alert-danger" >
+                <div ng-repeat="message in messages" class="{{message.type}}" role="alert">
                     <div>{{message.message}}</div>
                 </div>
             </div>
+            
         </header>
 
-        <div>
+        <div> 
             
             <div ng-view>
-    
+                    
             </div>
         </div>
         <footer id="footer"> 
@@ -125,7 +126,7 @@
                 <div class="container">
                     <div class="logo pull-left">
                         <a href="index.html" title="Travelo - home">
-                            <img  src="images/logo.png" alt="Travelo HTML5 Template" />
+                            <img  src="images/logo.png" alt="Home" />
                         </a>
                     </div>
                     <div class="pull-right">
@@ -269,31 +270,29 @@
         <!--<script src="/bower_components/jquery/dist/jquery.js"></script>-->
        
         <!--Angular-->
-        <script src="/bower_components/angular/angular.js"></script>  
+        <script src="/bower_components/angular/angular.min.js"></script>  
         <script src="/bower_components/angular-i18n/angular-locale_pt-br.js"></script>
-        <script src="/bower_components/angular-animate/angular-animate.js"></script>
-        <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="/bower_components/angular-route/angular-route.js"></script> 
-        <script src="/bower_components/restangular/dist/restangular.js"></script>
-        <script src="/bower_components/angular-strap/dist/angular-strap.js"></script>
+        <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/bower_components/angular-route/angular-route.min.js"></script> 
+        <script src="/bower_components/restangular/dist/restangular.min.js"></script>
+        <script src="/bower_components/angular-strap/dist/angular-strap.min.js"></script>
 
         
-        <script src="/bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
-        <script src="/bower_components/angular-linq/angular-linq.js"></script>
-        <script src="/bower_components/angular-filter/dist/angular-filter.js"></script>
-        <script src="/bower_components/angular-named-routes/dist/angular-named-routes.js"></script>
-        <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
-        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <script src="/bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+        <script src="/bower_components/angular-linq/angular-linq.min.js"></script>
+        <script src="/bower_components/angular-filter/dist/angular-filter.min.js"></script>
+        <script src="/bower_components/angular-named-routes/dist/angular-named-routes.min.js"></script>
+        <script src="/bower_components/angular-route/angular-route.min.js"></script>
        
         <!--Components-->
         <script src="/bower_components/moment/moment.js"></script>
-        <script src="/bower_components/moment/locale/pt-br.js"></script>
-        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="/bower_components/angular-ui-bootstrap/src/datepicker/datepicker.js"></script>
-        <script src="/bower_components/angular-ui-bootstrap/src/datepickerPopup/popup.js"></script>
+        <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <!--<script src="/bower_components/angular-ui-bootstrap/src/datepicker/datepicker.js"></script>-->
+        <!--<script src="/bower_components/angular-ui-bootstrap/src/datepickerPopup/popup.js"></script>-->
 
         <!--Others-->
-        <script src="/bower_components/lodash/lodash.js"></script>
+        <script src="/bower_components/lodash/lodash.min.js"></script>
         
         <!--<script type="text/javascript" src="js/datetimepicker.js"></script>
         <script type="text/javascript" src="js/datetimepicker.templates.js"></script>-->
@@ -319,9 +318,11 @@
         <!--directives-->
         <script src="/app/instaFlight/directives/autocomplete.js"></script>
         <script src="/app/instaFlight/directives/inputDatePickerDirective.js"></script>
+        <script src="/app/common/directives/loadingContentDirective.js"></script>
 
         <!--Controllers-->
-        <script src="/app/instaFlight/controllers/messagesController.js"></script>
+        <script src="/app/common/services/commonService.js"></script>  
+        <script src="/app/instaFlight/controllers/messagesController.js"></script>  
         <script src="/app/instaFlight/controllers/buscaVooFormController.js"></script>
         <script src="/app/instaFlight/controllers/buscaVooController.js"></script>
         <script src="/app/instaFlight/controllers/demo.dateRangeController.js"></script>

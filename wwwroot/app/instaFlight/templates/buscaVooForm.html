@@ -48,10 +48,6 @@
                             <form name="frmVooRq" novalidate>
                                     <h4 class="title">Escolha seu destino:</h4>
 
-                                    <div ng-if="frmVooRq.dataPartida > frmVooRq.dataChegada">
-                                            A data de partida deve ser menor que a data de chegada.
-                                    </div>
-                                    
                                     <div div class="col-md-3">
                                         <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.IdaVolta'> Ida e Volta
                                     </div>
@@ -63,7 +59,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group"> 
                                                  <!--<input type="text" class="input-text full-width" placeholder="Leaving From (city, distirct or specific airpot)" ng-model='vooRq.LocalPartida' />-->
-                                                <angucomplete inputClass="form-control" nameField="localPartida" placeholder="Local de Partda" id="ex1"  pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="1"  matchclass="highlight" ng-model='vooRq.LocalPartida' required />   
+                                                <angucomplete inputClass="form-control" autoComplete="off" nameField="localPartida" placeholder="Local de Partida" id="ex1"  pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="3"  matchclass="highlight" ng-model='vooRq.LocalPartida' requiredField="required" />   
                                                 <div ng-show="frmVooRq.localPartida.$submitted || frmVooRq.localPartida.$touched">
                                                     <div ng-show="frmVooRq.localPartida.$error.required">
                                                            <h6 class="color-text-error"> O local de partida é necessário.</h6>
@@ -99,7 +95,7 @@
                                         <div class="col-md-8">                                                
                                             <div class="form-group">
                                                  <!--<input type="date" class="form-control" placeholder="Going To (city, distirct or specific airpot)" ng-model='vooRq.LocalChegada' />-->
-                                                <angucomplete  nameField="localChegada" inputClass="form-control" id="ex2" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="1"  matchclass="highlight" ng-model='vooRq.LocalChegada' required />
+                                                <angucomplete  nameField="localChegada" inputClass="form-control" autoComplete="off" id="ex2" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="3"  matchclass="highlight" ng-model='vooRq.LocalChegada' required />
                                                 <div ng-show="frmVooRq.localChegada.$submitted || frmVooRq.localChegada.$touched">
                                                     <div ng-show="frmVooRq.localChegada.$error.required">
                                                             <h6 class="color-text-error">O local de chegada é necessário.</h6>
@@ -138,10 +134,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-4">  </div>
-                                    </div> 
-                                    <pre>
-                                       {{vooRq | json }} 
-                                    </pre>
+                                    </div>   
                                 </form>
                         </div> 
                     </div>

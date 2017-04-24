@@ -1,13 +1,17 @@
 angular.module('gameFareApp').service('vooService', ["Restangular", "messagesFactory"  , function(Restangular, messagesFactory){
-        console.log('Criou o service instaFlight.');
-        
+       //RestAngular call samples
+       //Restangular.one('places', 123).getList('venues')
+       //Restangular.one('places', 123).all('venues').getList()
+       //Restangular.one('Stock/Cars', carType).get({colour: 'red'}).then
+       //Restangular.all('stock').all('cars').all(carType)
         this.search = function(buscaVooPostRQ){ 
-            console.log('Chamou o search do servico');
-            return Restangular.all("voo").customPOST(buscaVooPostRQ, "busca");
+            //return Restangular.one("voos").customPOST(buscaVooPostRQ, "itinerarios");
+            return Restangular.all("voos").customGET("itinerarios", buscaVooPostRQ);
         };
 
         this.apostar = function(voo){ 
-            return Restangular.all("voo").customPOST(voo, "apostar");
+            return Restangular.all("voos").customPOST(voo, "apostar");
         };
-    
+
+        
 }]);

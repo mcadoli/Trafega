@@ -41,7 +41,7 @@
         // , 'highcharts-ng'          //Módulo de exibição de gráficos (https://github.com/pablojim/highcharts-ng)
         // , 'angular.filter'         //Diversos filtros extras e úteis para o angular (https://github.com/a8m/angular-filter)
         //,'ui.calendar'
-        //,'demo.dateRangeController'
+        ,'demo.dateRangeController'
         //,'ui.bootstrap.datetimepicker'
         ,'ui.bootstrap'
  
@@ -56,6 +56,7 @@
             function (routerProvider, $locationProvider, httpProvider, RestangularProvider, EnvironmentConfig) {
                 $locationProvider.html5Mode(true);
                 $locationProvider.hashPrefix('!');
+
 
                 RestangularProvider.setBaseUrl(EnvironmentConfig.api);
                 RestangularProvider.setDefaultHeaders({ 'Content-Type': 'application/json' });

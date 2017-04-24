@@ -1,99 +1,163 @@
  <section id="content" ng-controller="buscaVooController">
-            <form name="formAposta" class="container">
-                <div id="main">
-                    <div class="row">
-                        <div class="col-sm-8 col-md-9">
-                            <!-- Inicio Lista -->
-                            <div class="flight-list listing-style3 flight">
-                                <article class="box" ng-repeat="voo in voos">
-                                    <!--Começa Trechos -->
-                                    <div class="details col-xs-9 col-sm-9"  >
-                                        <table class="table" ng-repeat="trecho in voo.Trechos">
-                                          <thead class="thead-default">
-                                            <tr bgcolor="#D9D9D9">
-                                              <th bgcolor="#01B7F2" class="cabecalho"><img src="images/{{trecho.DirecaoVoo}}.png" class="img-responsive"></th>
-                                              <th>Quinta</br> <a class="destaque">{{trecho.DataPartida | date:'dd/MM/yyyy' }}</a></th>
-                                              <th>Rio de Janeiro </br><a class="destaque"> {{trecho.AeroportoPartida}}</a></th>
-                                              <th class="cabecalho"><img src="images/Seta.png" class="img-responsive"></th>
-                                              <th>Campinhas </br><a class="destaque"> {{trecho.AeroportoChegada}}</a></th>
-                                              <th></th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            <tr ng-repeat="segmento in trecho.Segmentos">
-                                              <td class="cabecalho"><input type="radio" name="options" id="option1" autocomplete="off" checked></td>
-                                              <td class="cabecalho"><img src="images/Azul.gif" class="img-responsive"></td>
-                                              
-                                              <td>{{segmento.DataPartida | date:'dd/MM/yyyy HH:mm'}}</td>
-                                              <td>{{segmento.QtdParadas + ' paradas '}} </td>
-                                              <td>{{segmento.DataChegada | date:'dd/MM/yyyy HH:mm'}}</td>
-                                              <td class="cabecalho"><a href="#detalhes_voo" ng-click="openDetails(segmento)" class="goto-login soap-popupbox">ver detalhes</a></td> 
-                                            </tr>  
-                                          </tbody>
-                                        </table>
-                                        <!--Começa aposta-->
-                                        <div class="well">
-                                            <div class="row">
-                                                <div class="col-md-6" >
-                                                    <div class="col-md-12 "><h3>Valor aposta</h3>
-                                                            <input type="range" name="range" ng-model="valorAposta" min="{{valorMinAposta}}"  max="{{valorMaxAposta}}"><br/>
-                                                            <input type="text" ng-model="valorAposta">
-                                                    </div>   
-                                                </div> 
-                                                <div class="col-md-6" >
-                                                    <div class="col-md-12 "><h3>Limite Resposta</h3> 
-                                                        <input type="range" name="range" ng-model="valorTempoResposta" min="{{valorMinTempoResposta}}"  max="{{valorMaxTempoResposta}}"><br/>
-                                                        <input type="text" ng-model="valorTempoResposta">
-                                                    </div>   
-                                                </div> 
-                                            </div>  
-                                        </div>        
-                                    <!-- Termina aposta-->    
-                                    </div>   
-                                    <!--Termina Trechos-->  
-                                     
-                                    <div class="seperator"></div>  
-                                    
-                                    <div class="details col-xs-3 col-sm-3">
-                                        <div class="details-wrapper"> 
-                                                <div class="posicao_na_div">
-                                                    <p class="estilo_total_Por_Pessoa">Total Por Pessoa </p>                                                    
-                                                </div>
-                                                <div class="posicao_na_div">
-                                                    <small class="estilo_small">Passagem ida + volta</small>
-                                                </div>                                              
-                                                      </br>                                         
-                                                <div class="posicao_na_div" id="vl_total">
-                                                    <label class="estilo_total" id="total_pessoa" >{{voo.ValorTotal}}</label>
-                                                </div>
-                                                <div class="posicao_na_div">
-                                                    <smal class="estilo_small ">Taxas a incluir</smal></p>
-                                                </div></br>
-                                                
-                                                <div class="action " >
-                                                   <a href="#travelo-login_aposta" class="goto-login soap-popupbox"><img src="images/btn_apostar.png"   ng-click="apostar(voo, valorAposta, valorTempoResposta);"></a>
-                                                   
-                                                </div>
-                                        </div>     
-                                    </div>  
-                                                  
-                                </article>
-                                </div> 
-
-                                <!-- Fim Lista -->                               
+    <form name="formAposta" class="container" novalidate>
+        <div id="main">
+            <div class="row">
+                <div style="background-color: #ffffff" class="col-sm-8 col-md-3">
+                        <h4 class="search-results-title"><i class="soap-icon-search"></i><b>{{qtdRegistrosFound}}</b> resultados encontrados.</h4>
+                       
+                        <h4 class="search-results-title">Escolha seu destino:</h4>
+                        <div class="panel style1 arrow-right"> 
+                            <div div class="col-md-12">
+                                <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.IdaVolta'> Ida e Volta
                             </div>
-                           
                         </div>
-                    </div>
+                        <div class="panel style1 arrow-right"> 
+                            <div div class="col-md-12">
+                                <input type="checkbox" name="options" id="option2" autocomplete="off" checked ng-model='vooRq.SomenteVoosDiretos'> Somente voos diretos
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">  
+                                    <angucomplete inputClass="form-control" autoComplete="off" nameField="localPartida" placeholder="Local de Partida" id="ex1"  pause="100" selectedobject="vooRq.LocalPartida" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE"  minlength="3"  matchclass="highlight" ng-model='vooRq.LocalPartida' requiredField="required" />   
+                                    <div ng-show="formAposta.localPartida.$submitted || formAposta.localPartida.$touched">
+                                        <div ng-show="formAposta.localPartida.$error.required">
+                                                <h6 class="color-text-error"> O local de partida é necessário.</h6>
+                                        </div>
+                                    </div>
+                                </div>                                                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="date" name="dataPartida" class="form-control" placeholder="Data Partida" ng-model='vooRq.DataPartida' min="{{ minDataPartida | date:'yyyy-MM-dd' }}" required />
+                                <div ng-show="formAposta.dataPartida.$submitted || formAposta.dataPartida.$touched">
+                                    <div ng-show="formAposta.dataPartida.$error.required">
+                                            <h6 class="color-text-error">A data de partida é necessária.</h6>
+                                    </div>
+                                </div>     
+                            </div> 
+                        </div>
+                       
+                        <div class="row">                                          
+                            <div class="col-md-12">                                                
+                                <div class="form-group">
+                                       
+                                    <angucomplete  nameField="localChegada" inputClass="form-control" autoComplete="off" id="ex2" placeholder="Local Chegada" pause="100" selectedobject="vooRq.LocalChegada" localdata="airports" searchfields="POI_NAME" titlefield="POI_NAME, VENDOR_CODE" descriptionField="VENDOR_CODE" minlength="3"  matchclass="highlight" ng-model='vooRq.LocalChegada' required />
+                                    <div ng-show="formAposta.localChegada.$submitted || formAposta.localChegada.$touched">
+                                        <div ng-show="formAposta.localChegada.$error.required">
+                                                <h6 class="color-text-error">O local de chegada é necessário.</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-12">
+                                <input type=date name="dataChegada" class="form-control" placeholder="Data Chegada" ng-model='vooRq.DataChegada' min="{{ minDataChegada | date:'yyyy-MM-dd' }}" required  />   
+                                <div ng-show="formAposta.dataChegada.$submitted || formAposta.dataChegada.$touched">
+                                    <div ng-show="formAposta.dataChegada.$error.required">
+                                        <h6 class="color-text-error"> A data de chegada é necessária.</h6>
+                                    </div>  
+                                </div>                                      
+                            </div>  
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-4">  </div>
+                            <div class="col-xs-4">
+                                <div class="form-group row">  
+                                    <button ng-click="buscarVoos(vooRq, formAposta)" class="full-width" >BUSCAR</button>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">  </div>
+                        </div>   
+                    
+                </div>  
+                <div class="col-sm-8 col-md-9"> 
+                        <!-- Inicio Lista -->
+                        <div class="flight-list listing-style3 flight">
+                            <loading-content></loading-content>
+                            <article class="box" ng-repeat="voo in voos">
+                                <!--Começa Trechos -->
+                                <div class="details col-xs-9 col-sm-12"  > 
+                                    <table class="table" ng-repeat="trecho in voo.Trechos">
+                                        <thead class="thead-default">
+                                            <tr bgcolor="#D9D9D9">
+                                                <th bgcolor="#01B7F2" ><img src="images/{{trecho.DirecaoVoo}}.png" class="img-responsive"></th>
+                                                <th>Quinta</br> {{trecho.DataPartida | date:'dd/MM/yyyy' }}</th>
+                                                <th>Rio de Janeiro </br><a class="destaque"> {{trecho.AeroportoPartida}}</a></th>
+                                                <th class="cabecalho"><img src="images/Seta.png" class="img-responsive"></th>
+                                                <th>Campinhas </br><a class="destaque"> {{trecho.AeroportoChegada}}</a></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody>
+                                            <tr ng-repeat="segmento in trecho.Segmentos">
+                                                <td ><input type="radio" name="options" id="option1" autocomplete="off" checked></td>
+                                                <td ><img src="images/Azul.gif" class="img-responsive"></td>
+                                                
+                                                <td><small>{{segmento.DataPartida | date:'dd/MM/yyyy HH:mm'}}</small></td>
+                                                <td><small>{{segmento.QtdParadas + ' paradas '}}</small> </td>
+                                                <td><small>{{segmento.DataChegada | date:'dd/MM/yyyy HH:mm'}}</small></td>
+                                                <td ><a href="#detalhes_voo" ng-click="openDetails(segmento)" class="goto-login soap-popupbox"><small>ver detalhes</small></a></td> 
+                                            </tr>  
+                                        </tbody>
+                                        
+                                    </table>
+                                    <!--Começa Valor Total-->
+                                    <div class="well">
+                                        <div class="row">
+                                            <div style="background-color: #f0f2ef;" class="col-md-4" >
+                                                <div  "col-md-12 "> 
+                                                        <p class="estilo_total_Por_Pessoa">
+                                                            Total Por Pessoa<br>
+                                                            
+                                                            <small class="estilo_small">Passagem ida + volta</small> 
+                                                            <h3 class="estilo_total"  id="total_pessoa" > {{voo.ValorTotal}}</h3>
+                                                            
+                                                        </p>  
+                                                        <div class="action">
+                                                           <button  class="full-width" >COMPRAR AGORA</button>
+                                                        </div>      
+                                                </div>
+                                                    
+                                            </div> 
+                                            <div class="col-md-8"> 
+                                                 <div class="row">
+                                                    <div class="col-md-6 "><h3 class="estilo_total_Por_Pessoa">Valor aposta</h3>
+                                                        <input type="range" name="range" ng-model="valorAposta" min="{{valorMinAposta}}"  max="{{valorMaxAposta}}"><br/>
+                                                        <input type="text" ng-model="valorAposta" step="any">
+                                                    </div> 
+                                                    <div class="col-md-6 ">
+                                                        <h3 class="estilo_total_Por_Pessoa">Limite Resposta </h3> 
+                                                        <input type="range" name="range" ng-model="valorTempoResposta" min="{{valorMinTempoResposta}}"  max="{{valorMaxTempoResposta}}"><br/>
+                                                        <input type="text" ng-model="valorTempoResposta" step="any">  
+                                                    </div> 
+                                                </div> 
+                                                <div class="row">
+                                                    <div style="padding-top: 7px;" class="col-md-12 ">
+                                                        <label><button  class="full-width" ng-click="apostar(voo, valorAposta, valorTempoResposta);" >APOSTAR AGORA</button></label>
+                                                    </div>    
+                                                </div>     
+                                            </div>   
+                                        </div>  
+                                    </div>
+                                    <!--Termina valor total-->        
+                                </div>   
+                                <!--Termina Trechos-->                    
+                            </article>
+                        </div> 
+                        <!-- Fim Lista --> 
+                        
                 </div>
             </div>
-         </div>     
+         </div>  
          <div modal="showModal" id="detalhes_voo" class="travelo-login-box_detalhes travelo-box" >
-            <h1>Detalhes do Voo</br><small> De {{segmentoDetail.AeroportoPartida}} a {{segmentoDetail.AeroportoChegada}}
-            Voo - nº {{segmentoDetail.NumeroVoo}} - Classe Econômica - {{segmentoDetail.SiglaCompanhia}}</small></h1> </br>
-
-                                                                    
-            Saída: {{segmentoDetail.DataPartida | date:'dd/MM/yyyy' }} | Sexta Feira | Horário: {{segmentoDetail.DataPartida | date:'HH:mm'}} - Local: Rio de Janeiro | Aeroporto Santos Dumont - {{segmentoDetail.AeroportoPartida}} </br>	Chegada: {{segmentoDetail.DataChegada | date:'dd/MM/yyyy'}} | Sexta Feira | Horário: {{segmentoDetail.DataChegada | date:'HH:mm'}} - Local: São Paulo | Aeroporto Internacional Guarulhos - {{segmentoDetail.AeroportoChegada}}
+            <h1>Detalhes do Voo</br><small> De {{segmentoDetail.CidadePartida}} - {{segmentoDetail.AeroportoPartida}} a {{segmentoDetail.CidadeChegada}} - {{segmentoDetail.AeroportoChegada}}
+            Voo - nº {{segmentoDetail.NumeroVoo}} - Classe Econômica - {{segmentoDetail.SiglaCompanhia}}</small></h1> 
+            </br>                                                         
+            Saída: {{segmentoDetail.DataPartida | date:'dd/MM/yyyy' }} | {{ segmentoDetail.DataPartida | date:'EEEE' }} | Horário: {{segmentoDetail.DataPartida | date:'HH:mm'}} - Local: {{segmentoDetail.CidadePartida}} | Aeroporto Santos Dumont - {{segmentoDetail.AeroportoPartida}} </br>	Chegada: {{segmentoDetail.DataChegada | date:'dd/MM/yyyy'}} | {{segmentoDetail.DataChegada | date:'EEEE'}} | Horário: {{segmentoDetail.DataChegada | date:'HH:mm'}} - Local: São Paulo | Aeroporto Internacional Guarulhos - {{segmentoDetail.AeroportoChegada}}
 
             </br>                                                        
             Percentuais de atrasos e cancelamentos de vôos</br>
@@ -101,35 +165,37 @@
             4,35% de atraso com mais de 40 minutos</br>
             23,33% de cancelamentos</br></br>
                                                                     
-            A Submarino Viagens disponibiliza em cumprimento à Resolução ANAC 218 - que estabelece a tranparência e divulgação dos percentuais de atrasos e cancelamento de voos do transporte aéreo de passageiros no Brasil, o link com as estatísticas fornecidas pela Agência Nacional de Aviação Civil: anac.gov.br/atrasosecancelamentos.Lembramos que a informação estará disponível mensalmente e refere-se sempre ao mês anterior.
-        </div>
-        <div modal="showModal" id="travelo-login_aposta" class="travelo-login-box travelo-box">
-                    <div class="login-social">
-                        <a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                        <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+            A Trafega disponibiliza em cumprimento à Resolução ANAC 218 - que estabelece a tranparência e divulgação dos percentuais de atrasos e cancelamento de voos do transporte aéreo de passageiros no Brasil, o link com as estatísticas fornecidas pela Agência Nacional de Aviação Civil: anac.gov.br/atrasosecancelamentos.Lembramos que a informação estará disponível mensalmente e refere-se sempre ao mês anterior.
+        </div> 
+    </form>  
+
+    <div modal="showModal" id="travelo-login_aposta" class="travelo-login-box travelo-box">
+            <div class="login-social">
+                <a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+                <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+            </div>
+            <div class="seperator"><label>OR</label></div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="input-text full-width" placeholder="email address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="input-text full-width" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <a href="#" class="forgot-password pull-right">Forgot password?</a>
+                    <div class="checkbox checkbox-inline">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
                     </div>
-                    <div class="seperator"><label>OR</label></div>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="email address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="input-text full-width" placeholder="password">
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="forgot-password pull-right">Forgot password?</a>
-                            <div class="checkbox checkbox-inline">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="seperator"></div>
-                    <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
-        </form>     
-        </section>
-    </div>
+                </div>
+            </form>
+            <div class="seperator"></div>
+            <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+    </div>  
+</section>
+
     
 
     

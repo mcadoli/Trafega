@@ -1,0 +1,14 @@
+{
+	"dev": {
+		"EnvironmentConfig": {
+			"api": "desvapi.trafega.com.br",
+			"apipassport": ""
+		}
+	},
+	"prod": {
+		"EnvironmentConfig": {
+			"api": "",
+			"apipassport": ""
+		}
+	}
+}

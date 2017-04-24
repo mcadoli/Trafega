@@ -1,0 +1,36 @@
+<div class="dropdown-menu datepicker-dropdown">
+    <div class="datepicker" ng-class="'datepicker-mode-' + $mode">
+        <table>
+            <thead>
+                <tr class="text-center">
+                    <th>
+                        <a tabindex="-1" class="datepicker-btn-left pull-left" title="Mês anterior" ng-click="$selectPane(-1)">
+                            <span class="{{$iconLeft}}"></span>
+                        </a>
+                    </th>
+                    <th colspan="{{ rows[0].length - 2 }}">
+                        <a tabindex="-1" class="datepicker-date-title">
+                            <span ng-bind="title"></span>
+                        </a>
+                    </th>
+                    <th>
+                        <a tabindex="-1" class="datepicker-btn-right pull-right" title="Próximo mês" ng-click="$selectPane(+1)">
+                            <span class="{{$iconRight}}"></span>
+                        </a>
+                    </th>
+                </tr>
+                <tr ng-if="showLabels" class="datepicker-labels" ng-bind-html="labels"></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(i, row) in rows" height="{{ 100 / rows.length }}%">
+                    <td class="text-center" ng-repeat="(j, el) in row">
+                        <a tabindex="-1" class="datepicker-btn" style="width: 100%" ng-class="{'datepicker-btn-selected': el.selected, 'datepicker-btn-muted':el.muted, 'datepicker-btn-today': el.isToday && !el.selected}"
+                        ng-click="$select(el.date)" ng-disabled="el.disabled">
+                            <span ng-bind="el.label"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
