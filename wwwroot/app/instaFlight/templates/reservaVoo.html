@@ -1,0 +1,178 @@
+<section id="content" class="gray-area">
+    <div class="container" ng-controller="reservaVooController">
+        <div class="row">
+            <div id="main" class="col-sms-6 col-sm-8 col-md-9">
+                <div class="booking-section travelo-box">  
+                    <form class="booking-form">
+                        <div class="row">
+                            <div class="person-information">
+                                <h2>Seus Dados</h2>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <label>Seu e-mail:</label>
+                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-1 col-md-1">
+                                        <label>Ou</label>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <label>Reserve mais rápido:</label>
+                                        <button type="submit" class="full-width btn-large">ACESSANDO SUA CONTA</button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Quero receber ofertas promocionais do <span class="skin-color">Trafega</span> no futuro.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <hr />
+                        <div class="person-information">
+                            <h2>Passageiros</h2>
+                            <div class="col-sm-2 col-md-2">
+                                <label>Adulto 1</label> 
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <label>Nome</label>
+                                <input type="text" class="input-text full-width" value="" placeholder="" />
+                            </div>
+                            <div class="col-sm-3 col-sm-3">
+                                <label>Sobrenome</label>
+                                <input type="text" class="input-text full-width" value="" placeholder="" />
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                                <label>Data Nasc:</label>
+                                <input type="text" class="input-text full-width" value="" placeholder="" />
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                                <label>Sexo:</label>
+                                <select class="form-control" id="sel1">
+                                    <option>Feminino</option>
+                                    <option>Masculino</option> 
+                                </select>
+                               
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                             <a href="#"><span class="skin-color">+ Adicionar Passageiro </span></a>
+                        <hr />
+                        <div class="card-information">
+                            <h2>Informações do cartão</h2>
+                            <div class="form-group row">
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Tipo</label>
+                                    <select class="form-control" id="sel1">
+                                        <option>Selecione um cartão</option>
+                                        <option>Visa</option>
+                                        <option>MasterCard</option> 
+                                        <option>American Express</option>
+                                        <option>Amex</option> 
+                                    </select>  
+                                </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <label>Nome no cartão</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8 col-md-8">
+                                </div>
+                                <div class="col-sm-4 col-sm-4">
+                                    <label>Validade</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 col-md-4">
+                                    <label>Número Cartão</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="" />
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <label>Código de Segurança</label>
+                                    <input type="text" class="input-text full-width" value="" placeholder="" />
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <label>Mês</label>
+                                    <input type="number" min-value="01" max-value="12" class="input-text full-width" value="" placeholder="" />
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <label>Ano</label>
+                                    <input type="number" min-value="2017" max-value="2050" class="input-text full-width" value="" placeholder="" />
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group row">
+                                
+                            </div>
+                        </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Continuando, você concorda com os <a href="#"><span class="skin-color">Termos e Condições.</span></a>.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 col-md-5">
+                                <button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar col-sms-6 col-sm-4 col-md-3">
+                <div class="booking-details travelo-box">
+                    <h4>Resumo da Viagem</h4>
+                    <article class="flight-booking-details">
+                        <dl class="other-details">
+                            <dt class="feature">Companhia Aérea:</dt><dd class="value">Delta</dd>
+                            <dt class="feature">Tipo de Vôo:</dt><dd class="value">{{vooReserva.CodigoCabine}}</dd> 
+                            <dt class="feature">Adulto(s)(1):</dt><dd class="value">{{vooReserva.ValorTarifa}}</dd>
+                            <dt class="feature">Taxas:</dt><dd class="value">{{vooReserva.Impostos}}</dd>  
+                            <dt class="total-price">Valor Total</dt><dd class="total-price-value">{{vooReserva.ValorTotal}}</dd>
+                        </dl>
+                    </article>
+                    <h4>Passagens Aéreas</h4>
+                    <article ng-repeat="trecho in vooReserva.Trechos">
+                        <div class="details">
+                            <div class="constant-column-3 timing clearfix" >
+                                <div class="check-in">
+                                    <label>Partida</label>
+                                    <span>{{trecho.DataPartida | date:'dd/MM/yyyy'}}<br />{{trecho.DataPartida | date:'EEEE'}}</span>
+                                </div>
+                                <div class="duration text-center">
+                                    <i class="soap-icon-clock"></i>
+                                    <span>{{trecho.Duracao}}</span>
+                                </div>
+                                <div class="check-out">
+                                    <label>Chegada</label>
+                                    <span>{{trecho.DataChegada | date:'dd/MM/yyyy'}}<br />{{trecho.DataChegada | date:'EEEE'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article> 
+                   
+                </div>
+                
+                <div class="travelo-box contact-box">
+                    <h4>Ajuda do Trafega?</h4>
+                    <p>Nós nos sentiremos mais do que felizes em audá-los.</p>
+                    <address class="contact-details">
+                        <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-Alô</span>
+                        <br>
+                        <a class="contact-email" href="#">contatopso@otllok.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pre>
+        {{vooReserva | json}}
+    </pre>
+</section>

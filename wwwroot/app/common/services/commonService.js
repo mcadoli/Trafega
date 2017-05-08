@@ -32,9 +32,5 @@ angular.module('gameFareApp').service('commonService', ["Restangular", "messages
                 });
             }
         }
-
-        
-
-        
-        
+   
 }]);

@@ -3,15 +3,15 @@
     angular
         .module('gameFareApp')
         .controller('buscaVooFormController', 
-            ['$rootScope', '$scope', '$location', '$routeParams', '$http', 'commonService',
-                function ($rootScope, $scope, $location, $routeParams, $http, commonService ) {
+            ['$rootScope', '$scope', '$location', '$routeParams', '$http', 'commonService', 'vooRqFactory', '$filter',
+                function ($rootScope, $scope, $location, $routeParams, $http, commonService, vooRqFactory, $filter) {
                     console.log('Entrou no controller instaFlight'); 
                     
                     $scope.minDataPartida = new Date();
                     $scope.minDataChegada = new Date();
-                    $scope.minDataChegada = $scope.minDataChegada.setDate($scope.minDataPartida.getDate()+1);
+                    $scope.minDataChegada = $scope.minDataChegada.setDate($scope.minDataPartida.getDate());
                     $scope.voosResponse = [];
-                    $scope.vooRq = novoVoo(); 
+                    $scope.vooRq = vooRqFactory;
                     $scope.voos = [];
                     
                     $http.get('airports.json').success(function(data){
@@ -24,6 +24,8 @@
                         {
                             vooRq.LocalPartida = vooRq.LocalPartida.description;
                             vooRq.LocalChegada = vooRq.LocalChegada.description; 
+                            vooRq.DataPartida = $filter('date')(vooRq.DataPartida,'yyyy-MM-dd');
+                            vooRq.DataChegada = $filter('date')(vooRq.DataChegada,'yyyy-MM-dd');    
                             console.log('Entrou no buscarVoos' + vooRq.LocalPartida + vooRq.DataPartida);   
                             window.sessionStorage.setItem('vooRq', JSON.stringify(vooRq));
                             window.location.href='/buscaVoo'; 
@@ -39,14 +41,4 @@
                 
 })();
 
-function novoVoo() 
-{
-    return{
-        LocalPartida: '', 
-        LocalChegada: '',
-        DataPartida: '',
-        DataChegada:'',
-        SomenteVoosDiretos: false,
-        IdaVolta: true
-    }
-}
+

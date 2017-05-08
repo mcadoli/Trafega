@@ -1,13 +1,13 @@
 {
 	"dev": {
 		"EnvironmentConfig": {
-			"api": "desvapi.trafega.com.br",
+			"api": "http://localhost:7935",
 			"apipassport": ""
 		}
 	},
-	"prod": {
+	"preview": {
 		"EnvironmentConfig": {
-			"api": "",
+			"api": "http://devapi.trafega.com",
 			"apipassport": ""
 		}
 	}

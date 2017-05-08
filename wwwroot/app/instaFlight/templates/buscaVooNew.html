@@ -76,87 +76,82 @@
                 </div>  
                 <div class="col-sm-8 col-md-9"> 
                         <!-- Inicio Lista -->
-                            <loading-content></loading-content>
-                            <article class="box" ng-repeat="voo in voos"> 
-                                    
+                        <div class="flight-list listing-style3 flight">
+                            <loading-content></loading-content> 
+                            <article class="box" ng-repeat="voo in voos">  
                                 <!--Começa Trechos -->
                                 <div class="details col-xs-9 col-sm-12"  > 
                                     <table class="table" ng-repeat="trecho in voo.Trechos">
-                                        <thead class="thead-default">
+                                        <thead class="thead-default" ng-if="trecho.TrechoHeader == true" >
                                             <tr bgcolor="#D9D9D9">
                                                 <th bgcolor="#01B7F2" ><img src="images/{{trecho.DirecaoVoo}}.png" class="img-responsive"></th>
-                                                <th >{{trecho.DataPartida | date:'EEEE' }}</br> <a class="destaque">{{trecho.DataPartida | date:'dd/MM/yyyy' }}</a></th>
+                                                <th >{{trecho.DataPartida | date:'EEE' }}</br> <a class="destaque">{{trecho.DataPartida | date:'dd/MM/yyyy' }}</a></th>
                                                 <th>{{trecho.CidadePartida}} </br><a class="destaque"> {{trecho.AeroportoPartida}}</a></th>
                                                 <th class="cabecalho"><img src="images/Seta.png" class="img-responsive"></th>
                                                 <th>{{trecho.CidadeChegada}} </br><a class="destaque"> {{trecho.AeroportoChegada}}</a></th>
                                                 <th></th>
                                             </tr>
                                         </thead> 
-                                        <tbody>
+                                        <tbody >
                                             <tr>
-                                                <td ><input type="radio" name="options" id="option1" autocomplete="off" checked></td>
-                                                <td ><img src="images/Azul.gif" class="img-responsive"></td>
-                                                
+                                                <td><input type="radio" name="options" id="option1" autocomplete="off" checked></td>
+                                                <td><img src="images/Azul.gif" class="img-responsive"></td>
                                                 <td><small>Sai - {{trecho.DataPartida | date:'HH:mm'}}</small></td>
-                                                <td><small>{{trecho.QtdParadas + ' parada(s) | ' + trecho.Duracao }}</small> </td>
+                                                <td><small>{{trecho.QtdParadas + ' parada(s) '}}</small> </td>
                                                 <td><small>Chega - {{trecho.DataChegada | date:'HH:mm'}}</small></td>
                                                 <td ><a href="#detalhes_voo" ng-click="openDetails(trecho.Segmentos)" class="goto-login soap-popupbox"><small>ver detalhes</small></a></td> 
                                             </tr>  
                                         </tbody>
+                                        
                                     </table>
+                                    
+                                        
                                     <!--Começa Valor Total-->
                                     <div class="well">
                                         <div class="row">
-                                            <div style="background-color: #f0f2ef;" class="col-md-6" >
+                                            <div style="background-color: #f0f2ef;" class="col-md-4" >
+                                                <div  "col-md-12 "> 
+                                                        <p class="estilo_total_Por_Pessoa">
+                                                            Total Por Pessoa<br>
+                                                            
+                                                            <small class="estilo_small">Passagem ida + volta</small> 
+                                                            <h3 class="estilo_total"  id="total_pessoa" > {{voo.ValorTotal}}</h3>
+                                                            
+                                                        </p>  
+                                                        <div class="action">
+                                                        <button  class="full-width" >COMPRAR AGORA</button>
+                                                        </div>      
+                                                </div>
+                                                    
+                                            </div> 
+                                            <div class="col-md-8"> 
                                                 <div class="row">
-                                                    <div class="col-xs-6 col-md-4">
-                                                        Valor por Adulto: <br><span class="estilo_total">{{voo.ValorTotal}}</span>    
-                                                    </div>
-                                                    <div class="col-xs-6 col-md-4">   
-                                                        Taxas e Encargos:<br> <span class="estilo_total"> {{voo.TotalTaxas}}</span><br>
-                                                    </div>
-                                                    <div class="col-xs-6 col-md-4"> 
-                                                        Valor Tarifa: <h3 class="estilo_total"> {{voo.ValorTarifa}}</h3>
+                                                    <div class="col-md-6 "><h3 class="estilo_total_Por_Pessoa">Valor Aposta</h3>
+                                                        <input type="range" name="range" ng-model="valorAposta" min="{{valorMinAposta}}"  max="{{valorMaxAposta}}"><br/>
+                                                        <input type="text" ng-model="valorAposta" step="any">
                                                     </div> 
-                                                </div>   
-                                            </div>  
-                                            
-                                            <div class="col-md-6" > 
+                                                    <div class="col-md-6 ">
+                                                        <h3 class="estilo_total_Por_Pessoa">Limite Resposta </h3> 
+                                                        <input type="range" name="range" ng-model="valorTempoResposta" min="{{valorMinTempoResposta}}"  max="{{valorMaxTempoResposta}}"><br/>
+                                                        <input type="text" ng-model="valorTempoResposta" step="any">  
+                                                    </div> 
+                                                </div> 
                                                 <div class="row">
-                                                        <div class="col-xs-8 col-md-6"><h3 class="estilo_total_Por_Pessoa">Valor Aposta</h3>
-                                                            <input type="range" name="range" ng-model="valorAposta" min="{{valorMinAposta}}"  max="{{valorMaxAposta}}" ><br/>
-                                                            <input type="text" ng-model="valorAposta" step="any">
-                                                        </div> 
-                                                        <div class="col-xs-8 col-md-6 ">
-                                                            <h3 class="estilo_total_Por_Pessoa">Limite Resposta </h3> 
-                                                            <input type="range" name="range" ng-model="valorTempoResposta" min="{{valorMinTempoResposta}}"  max="{{valorMaxTempoResposta}}"><br/>
-                                                            <input type="text" ng-model="valorTempoResposta" step="any">  
-                                                        </div> 
-                                                </div>        
+                                                    <div style="padding-top: 7px;" class="col-md-12 ">
+                                                        <label><button  class="full-width" ng-click="apostar(voo, valorAposta, valorTempoResposta);" >APOSTAR AGORA</button></label>
+                                                    </div>    
+                                                </div>     
                                             </div>   
                                         </div>  
-                                        <div class="row">
-                                            <div class="col-xs-8 col-md-6" style="padding-top: 3px;">
-                                               <button ng-click="comprarAgora(voo)" class="full-width" >COMPRAR AGORA</button> 
-                                            </div>
-                                            <div class="col-xs-8 col-md-6" style="padding-top: 3px;">
-                                                <label>
-                                                    <button  class="full-width" ng-click="apostar(voo, valorAposta, valorTempoResposta);" >
-                                                        {{btnApostaLabel}}
-                                                        <span ng-show="btnApostaLabel == 'APOSTANDO'">
-                                                            <i class="glyphicon glyphicon-refresh spinning"></i>
-                                                        </span>
-                                                    </button>
-                                                </label>    
-                                            </div>
-                                        </div>
                                     </div>
-                                    <!--Termina valor total-->          
+                                    
+                                    <!--Termina valor total-->        
                                 </div>   
                                 <!--Termina Trechos-->                    
                             </article>
                         </div> 
-                        <!-- Fim Lista -->       
+                        <!-- Fim Lista --> 
+                        
                 </div>
             </div>
          </div>  

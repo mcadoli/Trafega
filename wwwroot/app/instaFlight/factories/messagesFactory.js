@@ -15,12 +15,17 @@
                     //Type: error  
                    if(typeof message === 'object') {
                        var newMsg = '';
-                       
-                       message.forEach(function(msg, index) {
-                           newMsg += ('   ' + (index + 1) + ': ' + msg);
-                       }, this);
-                       
-                       message = newMsg.substr(2, newMsg.length);
+                       if(message != null)
+                       {
+                        if(message.length > 1)
+                        {
+                            angular.forEach(function(msg, index) {
+                                newMsg += ('   ' + (index + 1) + ': ' + msg);
+                            }, this);
+                            
+                            message = newMsg.substr(2, newMsg.length);
+                        }
+                       }
                    }
                 
                     var messageObj = {
@@ -62,8 +67,11 @@
                 
                 //Limpa todas as mensagens
                 clearMessages: function() {
-                    for(var alert in messages) {
-                        delete messages[alert];
+                    if(messages != null)
+                    {
+                        for(var alert in messages) {
+                            delete messages[alert];
+                        }
                     }
                 }
             };

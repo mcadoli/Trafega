@@ -7,6 +7,7 @@
     angular.module('app.factories', []);
     angular.module('app.providers', []);
     angular.module('app.filters', []);
+    angular.module('app.constants', []);
     angular.module('demo', []);
    
 
@@ -22,6 +23,7 @@
         , 'app.factories'
         , 'app.providers'
         , 'app.filters'
+        , 'app.constants'
         //3rd Party Modules
         // , 'angularMoment'          //Para tratamento de datas (ranges, formatação etc) (https://github.com/urish/angular-moment)
          //, 'ngFileUpload'           //Para upload de arquivos (https://github.com/danialfarid/ng-file-upload)
@@ -73,6 +75,12 @@
                     controller: 'buscaVooController',
                     name: 'buscaVoo'
                 }).otherwise({ redirectTo: "/" }); 
+
+                routerProvider.when('/reservaVoo', {
+                    templateUrl: '/app/instaFlight/templates/reservaVoo.html',
+                    controller: 'reservaVooController',
+                    name: 'reservaVoo'
+                }).otherwise({ redirectTo: "/" });
 
                 routerProvider.when('/errorPage', {
                     templateUrl: '/app/instaFlight/templates/pageError.html',

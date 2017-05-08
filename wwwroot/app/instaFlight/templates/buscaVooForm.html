@@ -69,7 +69,7 @@
                                                                                                          
                                         </div>
                                             <div class="col-md-4">
-                                                <input type="date" name="dataPartida" class="form-control" placeholder="Data Partida" ng-model='vooRq.DataPartida' min="{{ minDataPartida | date:'yyyy-MM-dd' }}" required />
+                                                <input type="date" name="dataPartida" class="form-control" placeholder="Data Partida" ng-model='vooRq.DataPartida' min="{{ minDataPartida | date:'yyyy-MM-dd' }}"  required />
                                                 <div ng-show="frmVooRq.dataPartida.$submitted || frmVooRq.dataPartida.$touched">
                                                     <div ng-show="frmVooRq.dataPartida.$error.required">
                                                             <h6 class="color-text-error">A data de partida é necessária.</h6>
@@ -118,7 +118,7 @@
                                                     
                                                 </div> -->
                                                 <!--<input-datepicker ng-model="dtpValue1" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-readonly="true"></input-datepicker>--> 
-                                                <input type=date name="dataChegada" class="form-control" placeholder="Data Chegada" ng-model='vooRq.DataChegada' min="{{ minDataChegada | date:'yyyy-MM-dd' }}" required  />   
+                                                <input type=date name="dataChegada" class="form-control" placeholder="Data Chegada" ng-model='vooRq.DataChegada' format min="{{ minDataChegada | date:'yyyy-MM-dd' }}" required  />   
                                                 <div ng-show="frmVooRq.dataChegada.$submitted || frmVooRq.dataChegada.$touched">
                                                     <div ng-show="frmVooRq.dataChegada.$error.required">
                                                        <h6 class="color-text-error"> A data de chegada é necessária.</h6>
