@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    'use strict'; 
     angular
         .module('gameFareApp')
         .controller('buscaVooController', 
@@ -25,7 +25,13 @@
                             $scope.airports = data;
                         }).catch(function(response) {   
                             messagesFactory.addMessage(response.data, 'alert alert-danger', 0, false); 
-                        });  
+                        }); 
+
+                        $http.get('airlines.json').success(function(data){
+                            $scope.airlines = data;
+                        }).catch(function(response) {   
+                            messagesFactory.addMessage(response.data, 'alert alert-danger', 0, false); 
+                        }); 
 
                         $rootScope.vooRq = JSON.parse(window.sessionStorage.getItem('vooRq'));
                         window.sessionStorage.removeItem('vooRq');
@@ -52,9 +58,12 @@
                                 var countTrechos = 0;
                             angular.forEach(vooResponse, function(value, key){ 
                                 $scope.voos.push(value); 
+                                value.Classe = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName; 
                                 angular.forEach(value.Trechos,function(valueTrecho, key){
                                     valueTrecho.CidadePartida = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoPartida })[0].CITY_NAME;
                                     valueTrecho.CidadeChegada = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoChegada })[0].CITY_NAME;
+                                    valueTrecho.AeroportoPartidaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoPartida })[0].POI_NAME;
+                                    valueTrecho.AeroportoChegadaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoChegada })[0].POI_NAME;
                                     countTrechos += 1;
                                     angular.forEach(valueTrecho.Segmentos,function(valueSegmento, key){
                                         valueSegmento.CidadePartida = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoPartida })[0].CITY_NAME;
@@ -62,7 +71,8 @@
                                         valueSegmento.AeroportoPartidaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoPartida })[0].POI_NAME;
                                         valueSegmento.AeroportoChegadaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoChegada })[0].POI_NAME;
                                         valueSegmento.Classe = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName;
-                                        valueTrecho.CodigoCabine = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName;
+                                        valueTrecho.CompanhiaAerea = $filter('filter')($scope.airlines, {iata: valueSegmento.CodigoCompanhiaAerea })[0].name;
+                                        
                                     });
 
                                 });
@@ -95,17 +105,20 @@
                         vooService.search($rootScope.vooRq).then(function(vooResponse){ 
                             $scope.voos = [];
                             $scope.qtdRegistrosFound = {};
-                            angular.forEach(vooResponse, function(value, key){   
+                            angular.forEach(vooResponse, function(value, key){  
+                                value.Classe = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName; 
                                 angular.forEach(value.Trechos,function(valueTrecho, key){
                                     valueTrecho.CidadePartida = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoPartida })[0].CITY_NAME;
                                     valueTrecho.CidadeChegada = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoChegada })[0].CITY_NAME;
+                                    valueTrecho.AeroportoPartidaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoPartida })[0].POI_NAME;
+                                    valueTrecho.AeroportoChegadaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueTrecho.AeroportoChegada })[0].POI_NAME;
                                     angular.forEach(valueTrecho.Segmentos,function(valueSegmento, key){
                                         valueSegmento.CidadePartida = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoPartida })[0].CITY_NAME;
                                         valueSegmento.CidadeChegada = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoChegada })[0].CITY_NAME;
                                         valueSegmento.AeroportoPartidaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoPartida })[0].POI_NAME;
                                         valueSegmento.AeroportoChegadaNome = $filter('filter')($scope.airports, {VENDOR_CODE: valueSegmento.AeroportoChegada })[0].POI_NAME;
                                         valueSegmento.Classe = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName;
-                                        value.CodigoCabine = constants.Cabine.filter(function (items) { return items.Code === value.CodigoCabine; })[0].FullName;
+                                        valueTrecho.CompanhiaAerea = valueSegmento.CodigoCompanhiaAerea;
                                     });
 
                                 });

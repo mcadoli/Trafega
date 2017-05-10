@@ -29,37 +29,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                        <hr />
-                        <div class="person-information">
-                            <h2>Passageiros</h2>
-                            <div class="col-sm-2 col-md-2">
-                                <label>Adulto 1</label> 
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <label>Nome</label>
-                                <input type="text" class="input-text full-width" value="" placeholder="" />
-                            </div>
-                            <div class="col-sm-3 col-sm-3">
-                                <label>Sobrenome</label>
-                                <input type="text" class="input-text full-width" value="" placeholder="" />
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <label>Data Nasc:</label>
-                                <input type="text" class="input-text full-width" value="" placeholder="" />
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <label>Sexo:</label>
-                                <select class="form-control" id="sel1">
-                                    <option>Feminino</option>
-                                    <option>Masculino</option> 
-                                </select>
-                               
+                        <div class="row" id="passageiros">
+                            <hr />
+                            <div class="person-information">
+                                <h2>Passageiros</h2>
+                                <div class="row" id="passageiros">
+                                    <div class="col-sm-2 col-md-2">
+                                        <label>Adulto 1</label> 
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <label>Nome</label>
+                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-3 col-sm-3">
+                                        <label>Sobrenome</label>
+                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <label>Data Nasc:</label>
+                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <label>Sexo:</label>
+                                        <select class="form-control" id="sel1">
+                                            <option>Feminino</option>
+                                            <option>Masculino</option> 
+                                        </select>
+                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
                         <div class="row">
-                             <a href="#"><span class="skin-color">+ Adicionar Passageiro </span></a>
+                             <a href="#" ng-click="addHtmlPassageiro()"><span class="skin-color">+ Adicionar Passageiro </span></a>
                         <hr />
                         <div class="card-information">
                             <h2>Informações do cartão</h2>
@@ -130,9 +132,7 @@
                 <div class="booking-details travelo-box">
                     <h4>Resumo da Viagem</h4>
                     <article class="flight-booking-details">
-                        <dl class="other-details">
-                            <dt class="feature">Companhia Aérea:</dt><dd class="value">Delta</dd>
-                            <dt class="feature">Tipo de Vôo:</dt><dd class="value">{{vooReserva.CodigoCabine}}</dd> 
+                        <dl class="other-details">  
                             <dt class="feature">Adulto(s)(1):</dt><dd class="value">{{vooReserva.ValorTarifa}}</dd>
                             <dt class="feature">Taxas:</dt><dd class="value">{{vooReserva.Impostos}}</dd>  
                             <dt class="total-price">Valor Total</dt><dd class="total-price-value">{{vooReserva.ValorTotal}}</dd>
@@ -141,6 +141,10 @@
                     <h4>Passagens Aéreas</h4>
                     <article ng-repeat="trecho in vooReserva.Trechos">
                         <div class="details">
+                            <span class="label label-primary" ng-if="trecho.DirecaoVoo == 'I'">Ida</span><span class="label label-primary" ng-if="trecho.DirecaoVoo == 'V'">Volta</span> -
+                            <label ng-if="trecho.DirecaoVoo == 'I'">{{trecho.AeroportoPartidaNome}} ({{trecho.AeroportoPartida}}) - </label><label ng-if="trecho.DirecaoVoo == 'V'"> {{trecho.AeroportoPartidaNome}}({{trecho.AeroportoPartida}}) - </label>
+                            <label> {{trecho.CompanhiaAerea}} - </label>
+                            <label> {{vooReserva.Classe}}</label>
                             <div class="constant-column-3 timing clearfix" >
                                 <div class="check-in">
                                     <label>Partida</label>
@@ -174,5 +178,5 @@
     </div>
     <pre>
         {{vooReserva | json}}
-    </pre>
+    </pre> 
 </section>

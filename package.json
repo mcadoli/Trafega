@@ -1,5 +1,5 @@
 {
-  "name": "GameFare",
+  "name": "Trafega",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-inject": "^4.2.0",
     "gulp-uglify": "^2.1.2",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "airline-codes": "^1.0.2"
   }
 }
