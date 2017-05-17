@@ -3,8 +3,8 @@
     angular
         .module('gameFareApp')
         .controller('buscaVooFormController', 
-            ['$rootScope', '$scope', '$location', '$routeParams', '$http', 'commonService', 'vooRqFactory', '$filter',
-                function ($rootScope, $scope, $location, $routeParams, $http, commonService, vooRqFactory, $filter) {
+            ['$rootScope', '$scope', '$location', '$http', 'commonService', 'vooRqFactory', '$filter',
+                function ($rootScope, $scope, $location, $http, commonService, vooRqFactory, $filter) {
                     console.log('Entrou no controller instaFlight'); 
                     
                     $scope.minDataPartida = new Date();

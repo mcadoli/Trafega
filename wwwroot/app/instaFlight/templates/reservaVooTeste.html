@@ -1,9 +1,66 @@
-<div class="row" id="passageiros">
-    
-   
-</div>
-    
-
-<div class="row">
-        <a href="#" ng-click="addHtmlPassageiro()"><span class="skin-color">+ Adicionar Passageiro </span></a>
+<div class="card-information">
+    <h2>Dados do Pagante</h2>
+    <div class="form-group row">
+        <div class="col-sm-3 col-md-3">
+            <label>Data de Nascimento</label>
+            <input type="text" ng-model="dataNascPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            <div class="col-sm-3 col-md-3">
+            <label>Sexo:</label>
+            <select class="form-control" id="sel1" ng-model="sexoPagante">
+                <option>Feminino</option>
+                <option>Masculino</option> 
+            </select>
+            </div>
+            <div class="col-sm-3 col-md-3">
+            <label>CPF:</label>
+            <input type="text" ng-model="cpfPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            <div class="col-sm-3 col-md-3">
+            <label>Telefone:</label>
+            <input type="text" ng-model="telPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3 col-md-3">
+            <label>Tipo:</label>
+            <div class="radio">
+                <label><input type="radio" ng-model="tipoTelPagante" name="optradio">Celular</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" ng-model="tipoTelPagante" name="optradio">Fixo</label>
+            </div>  
+            </div>
+        <div class="col-sm-5 col-md-5">
+            <label>Endereço:</label>
+            <input type="text" ng-model="endPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            <div class="col-sm-2 col-md-2">
+            <label>Numero:</label>
+            <input type="text" ng-model="numCasaPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            <div class="col-sm-2 col-md-2">
+            <label>Complemento:</label>
+            <input type="text" ng-model="complementoPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+            
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-3 col-md-3">
+            <label>Estado:</label>
+            <select ng-model="estadoPagante" class="form-control" id="sel1">
+                <option>RJ</option>
+                <option>SP</option> 
+            </select>
+            </div>
+            <div class="col-sm-3 col-md-3">
+            <label>Cidade:</label>
+            <input type="text" ng-model="cidadePagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+        <div class="col-sm-4 col-md-4">
+            <label>Bairro:</label>
+            <input type="text" ng-model="bairroPagante" class="input-text full-width" value="" placeholder="" />
+            </div>
+    <div>
 </div>

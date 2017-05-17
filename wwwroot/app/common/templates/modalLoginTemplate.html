@@ -1,0 +1,39 @@
+<div>
+  <form ng-controller="modalLoginController">
+    <input type="email" ng-model="loginData.userName" />
+    <input type="password" ng-model="loginData.password" />
+    <button ng-click="submit(loginData, $event)">Submit</button>
+  </form>
+  <button ng-click="cancel()">Cancel</button>
+  <div >
+        <h6 class="color-text-error"> {{loginErroMessage}}</h6>
+  </div>
+</div>
+
+<!--<section id="content">
+<div class="travelo-login-box travelo-box">
+      <div class="login-social">
+          <a  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+          <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
+      </div>
+      <div class="seperator"><label>OR</label></div>
+      <form ng-submit="modalLoginController.submit(loginData)">
+          <div class="form-group">
+              <input type="email" class="input-text full-width" placeholder="email address" ng-model="loginData.userName">
+          </div>
+          <div class="form-group">
+              <input type="password" class="input-text full-width" placeholder="password" ng-model="loginData.password">
+          </div>
+          <div class="form-group">
+              <a href="#" class="forgot-password pull-right">Forgot password?</a>
+              <div class="checkbox checkbox-inline">
+                  <label>
+                      <input type="checkbox"> Remember me
+                  </label>
+              </div>
+          </div>
+      </form>
+      <div class="seperator"></div>
+      <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+</div> 
+</section>-->

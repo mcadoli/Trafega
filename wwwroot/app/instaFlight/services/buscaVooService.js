@@ -6,11 +6,11 @@ angular.module('gameFareApp').service('vooService', ["Restangular", "messagesFac
        //Restangular.all('stock').all('cars').all(carType)
         this.search = function(buscaVooPostRQ){ 
             //return Restangular.one("voos").customPOST(buscaVooPostRQ, "itinerarios");
-            return Restangular.all("voos").customGET("itinerarios", buscaVooPostRQ);
+            return Restangular.all("v1/voos").customGET("itinerarios", buscaVooPostRQ);
         };
 
         this.apostar = function(voo){ 
-            return Restangular.all("voos").customPOST(voo, "apostar");
+            return Restangular.all("v1/voos").customPOST(voo, "apostar");
         };
 
         

@@ -3,14 +3,14 @@
         <div class="row">
             <div id="main" class="col-sms-6 col-sm-8 col-md-9">
                 <div class="booking-section travelo-box">  
-                    <form class="booking-form">
+                    <form class="booking-form" name="frmReservaVoo">
                         <div class="row">
                             <div class="person-information">
                                 <h2>Seus Dados</h2>
                                 <div class="form-group row">
                                     <div class="col-sm-4 col-md-4">
                                         <label>Seu e-mail:</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" ng-model="emailPagante" class="input-text full-width" value="" placeholder="" />
                                     </div>
                                     <div class="col-sm-1 col-md-1">
                                         <label>Ou</label>
@@ -39,17 +39,17 @@
                                     </div>
                                     <div class="col-sm-3 col-md-3">
                                         <label>Nome</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" ng-model="nomePassageiro" class="input-text full-width" value="" placeholder="" />
                                     </div>
                                     <div class="col-sm-3 col-sm-3">
                                         <label>Sobrenome</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" ng-model="sobrenomePassageiro" class="input-text full-width" value="" placeholder="" />
                                     </div>
                                     <div class="col-sm-2 col-md-2">
                                         <label>Data Nasc:</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" ng-model="dataNascPassageiro" class="input-text full-width" value="" placeholder="" />
                                     </div>
-                                    <div class="col-sm-2 col-md-2">
+                                    <div class="col-sm-2 col-md-2" ng-model="sexoPassageiro">
                                         <label>Sexo:</label>
                                         <select class="form-control" id="sel1">
                                             <option>Feminino</option>
@@ -62,55 +62,103 @@
                         </div>
                         <div class="row">
                              <a href="#" ng-click="addHtmlPassageiro()"><span class="skin-color">+ Adicionar Passageiro </span></a>
-                        <hr />
-                        <div class="card-information">
-                            <h2>Informações do cartão</h2>
-                            <div class="form-group row">
-                                <div class="col-sm-6 col-md-5">
-                                    <label>Tipo</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Selecione um cartão</option>
-                                        <option>Visa</option>
-                                        <option>MasterCard</option> 
-                                        <option>American Express</option>
-                                        <option>Amex</option> 
-                                    </select>  
+                            <hr />  
+                            <div class="card-information">
+                                <h2>Informações do cartão</h2>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <label>Bandeira</label>
+                                        <select ng-model="bandeiraCartao" class="form-control" id="sel1">
+                                            <option>Selecione um cartão</option>
+                                            <option>Visa</option>
+                                            <option>MasterCard</option> 
+                                            <option>American Express</option>
+                                            <option>Amex</option> 
+                                        </select>  
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <label>Nome no cartão</label>
+                                        <input type="text" ng-model="nomeNoCartao" class="input-text full-width" value="" placeholder="" />
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 col-md-5">
-                                    <label>Nome no cartão</label>
-                                    <input type="text" class="input-text full-width" value="" placeholder="" />
+                                <div class="row">
+                                    <div class="col-sm-8 col-md-8">
+                                    </div>
+                                    <div class="col-sm-4 col-sm-4">
+                                        <label>Validade</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-8 col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <label>Número Cartão</label>
+                                        <input type="text" ng-model="numeroCartao" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <label>Código de Segurança</label>
+                                        <input type="text" ng-model="codSegurancaCartao" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <label>Mês</label>
+                                        <input type="number" ng-model="mesValidadeCartao" min-value="01" max-value="12" class="input-text full-width" value="" placeholder="" />
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <label>Ano</label>
+                                        <input type="number" ng-model="anoValidadeCartao" min-value="2017" max-value="2050" class="input-text full-width" value="" placeholder="" />
+                                    </div> 
                                 </div>
-                                <div class="col-sm-4 col-sm-4">
-                                    <label>Validade</label>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 col-md-4">
-                                    <label>Número Cartão</label>
-                                    <input type="text" class="input-text full-width" value="" placeholder="" />
-                                </div>
-                                <div class="col-sm-4 col-md-4">
-                                    <label>Código de Segurança</label>
-                                    <input type="text" class="input-text full-width" value="" placeholder="" />
-                                </div>
-                                <div class="col-sm-2 col-md-2">
-                                    <label>Mês</label>
-                                    <input type="number" min-value="01" max-value="12" class="input-text full-width" value="" placeholder="" />
-                                </div>
-                                <div class="col-sm-2 col-md-2">
-                                    <label>Ano</label>
-                                    <input type="number" min-value="2017" max-value="2050" class="input-text full-width" value="" placeholder="" />
-                                </div> 
-                            </div>
-                            
-                            <div class="form-group row">
-                                
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="card-information">
+                                <h2>Dados do Pagante</h2>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-md-3">
+                                        <label>Data de Nascimento</label>
+                                        <input type="text" ng-model="dataNascPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                        <label>Sexo:</label>
+                                        <select class="form-control" id="sel1" ng-model="sexoPagante">
+                                            <option>Feminino</option>
+                                            <option>Masculino</option> 
+                                        </select>
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                        <label>CPF:</label>
+                                        <input type="text" ng-model="cpfPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        <div class="col-sm-3 col-md-3">
+                                        <label>Telefone:</label>
+                                        <input type="text" ng-model="telPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-md-3">
+                                        <label>Tipo:</label>
+                                        <div class="radio">
+                                            <label><input type="radio" ng-model="tipoTelPagante" name="optradio">Celular</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" ng-model="tipoTelPagante" name="optradio">Fixo</label>
+                                        </div>  
+                                        </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <label>Endereço:</label>
+                                        <input type="text" ng-model="endPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        <div class="col-sm-2 col-md-2">
+                                        <label>Numero:</label>
+                                        <input type="text" ng-model="numCasaPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        <div class="col-sm-2 col-md-2">
+                                        <label>Complemento:</label>
+                                        <input type="text" ng-model="complementoPagante" class="input-text full-width" value="" placeholder="" />
+                                        </div>
+                                        
+                                </div>
+                                
+                            </div>
                         </div>
                         <hr />
                         <div class="form-group">
@@ -122,7 +170,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 col-md-5">
-                                <button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
+                                <button type="submit" class="full-width btn-large">CONCLUIR COMPRA</button>
                             </div>
                         </div>
                     </form>
@@ -133,18 +181,18 @@
                     <h4>Resumo da Viagem</h4>
                     <article class="flight-booking-details">
                         <dl class="other-details">  
-                            <dt class="feature">Adulto(s)(1):</dt><dd class="value">{{vooReserva.ValorTarifa}}</dd>
-                            <dt class="feature">Taxas:</dt><dd class="value">{{vooReserva.Impostos}}</dd>  
-                            <dt class="total-price">Valor Total</dt><dd class="total-price-value">{{vooReserva.ValorTotal}}</dd>
+                            <dt class="feature">Adulto(s)(1):</dt><dd class="value">{{voo.ValorTarifa}}</dd>
+                            <dt class="feature">Taxas:</dt><dd class="value">{{voo.Impostos}}</dd>  
+                            <dt class="total-price">Valor Total</dt><dd class="total-price-value">{{voo.ValorTotal}}</dd>
                         </dl>
                     </article>
                     <h4>Passagens Aéreas</h4>
-                    <article ng-repeat="trecho in vooReserva.Trechos">
+                    <article ng-repeat="trecho in voo.Trechos">
                         <div class="details">
                             <span class="label label-primary" ng-if="trecho.DirecaoVoo == 'I'">Ida</span><span class="label label-primary" ng-if="trecho.DirecaoVoo == 'V'">Volta</span> -
                             <label ng-if="trecho.DirecaoVoo == 'I'">{{trecho.AeroportoPartidaNome}} ({{trecho.AeroportoPartida}}) - </label><label ng-if="trecho.DirecaoVoo == 'V'"> {{trecho.AeroportoPartidaNome}}({{trecho.AeroportoPartida}}) - </label>
                             <label> {{trecho.CompanhiaAerea}} - </label>
-                            <label> {{vooReserva.Classe}}</label>
+                            <label> {{voo.Classe}}</label>
                             <div class="constant-column-3 timing clearfix" >
                                 <div class="check-in">
                                     <label>Partida</label>

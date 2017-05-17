@@ -3,8 +3,8 @@
     angular
         .module('gameFareApp')
         .controller('buscaVooController', 
-            ['$rootScope', '$scope', '$location', '$routeParams', 'vooService', "messagesFactory", "$window", 'commonService', '$http', '$filter', 'constants', 'vooRqFactory', 
-                function ($rootScope, $scope, $location, $routeParams, vooService, messagesFactory, $window, commonService, $http, $filter, constants, vooRqFactory) {    
+            ['$rootScope', '$scope', '$location', 'vooService', 'messagesFactory', '$window', 'commonService', '$http', '$filter', 'constants', 'vooRqFactory', 
+                function ($rootScope, $scope, $location,  vooService, messagesFactory, $window, commonService, $http, $filter, constants, vooRqFactory) {    
                     $scope.minDataPartida = new Date(); 
                     $scope.minDataChegada = new Date();
                     $scope.minDataChegada = $scope.minDataChegada.setDate($scope.minDataPartida.getDate());
@@ -156,7 +156,11 @@
                              messagesFactory.addMessage('Aposta realizada com sucesso.', 'alert alert-success', 0, false);
                              $scope.btnApostaLabel = "APOSTADO";
 
-                        }).catch(function(response) {  
+                        }).catch(function(response) { 
+                            if(response.status === 401)
+                            {
+                                $location.path('/modalLogin');
+                            } 
                             $scope.btnApostaLabel = "ERRO";  
                             messagesFactory.addMessage(response.data, 'alert alert-danger', 0, false); 
                         }); 

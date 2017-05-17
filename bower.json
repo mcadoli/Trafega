@@ -30,7 +30,6 @@
     "angular-animate": "~1.4.0",
     "angular-i18n": "~1.5.0",
     "lodash": "3.10.1",
-    "angular-sanitize": "~1.4.0",
     "angular-linq": "^1.0.2",
     "highcharts-ng": "^0.0.11",
     "highstock": "highstock-release#^4.2.3",
@@ -43,6 +42,9 @@
     "angular-ui-calendar": "~1.0.2",
     "angular-datepicker": "~2.0.3",
     "angular-ui-bootstrap-datetimepicker": "~2.5.0",
-    "angular-ui-bootstrap": "ui-bootstrap#~2.5.0"
+    "angular-ui-bootstrap": "ui-bootstrap#~2.5.0",
+    "angular-md5": "~0.1.10",
+    "angular-ui-router": "ui-router#~1.0.3+hybrid-2.0.0-2",
+    "ngstorage": "~0.3.11"
   }
 }

@@ -3,11 +3,12 @@
     angular
         .module('gameFareApp')
         .controller('reservaVooController', 
-            ['$rootScope', '$scope', '$location', '$routeParams', '$http', 'commonService', '$filter', '$window', '$document', '$compile',
-                function ($rootScope, $scope, $location, $routeParams, $http, commonService, $filter, $window, $document, $compile) {
+            ['$rootScope', '$scope', '$location', '$routeParams', '$http', 'commonService', '$filter', '$window', '$document', '$compile', 'vooReservaRqFactory',
+                function ($rootScope, $scope, $location, $routeParams, $http, commonService, $filter, $window, $document, $compile, vooReservaRqFactory) {
                    var numeroPassageiro = 2;
+                   $scope.vooReservaRq = vooReservaRqFactory;
                    $scope.init = function(){   
-                        $rootScope.vooReserva = JSON.parse(window.sessionStorage.getItem('voo'));
+                        $rootScope.voo = JSON.parse(window.sessionStorage.getItem('voo'));
                         //window.sessionStorage.removeItem('voo');
                     }
                     $scope.init();

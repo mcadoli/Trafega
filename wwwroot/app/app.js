@@ -8,13 +8,13 @@
     angular.module('app.providers', []);
     angular.module('app.filters', []);
     angular.module('app.constants', []);
-    angular.module('demo', []);
+    
    
 
     //Main app
     angular.module('gameFareApp', [
         //Angular modules
-        , 'ngRoute'
+        
         , 'ngAnimate'
 
         //Custom modules 
@@ -38,14 +38,17 @@
         //, 'angular-multi-check'  //Seleção de múltiplos checkboxes com shift (https://github.com/Schlogen/angular-multi-check)
         //, 'cfp.hotkeys'          //Hotkeys! (https://github.com/chieffancypants/angular-hotkeys/)
          , 'restangular'            //REST API (https://github.com/mgonto/restangular)
-         , 'zj.namedRoutes'         //Resolução de rotas | URL reversa (https://github.com/airtonix/angular-named-routes/)
+         //, 'zj.namedRoutes'         //Resolução de rotas | URL reversa (https://github.com/airtonix/angular-named-routes/)
         // , 'angular-linq'           //Extensões do tipo LINQ disponíveis para angular (https://github.com/Angular-Public/angular-linq)
         // , 'highcharts-ng'          //Módulo de exibição de gráficos (https://github.com/pablojim/highcharts-ng)
         // , 'angular.filter'         //Diversos filtros extras e úteis para o angular (https://github.com/a8m/angular-filter)
         //,'ui.calendar'
-        ,'demo.dateRangeController'
+        //,'demo.dateRangeController'
         //,'ui.bootstrap.datetimepicker'
+        ,'ngStorage'
         ,'ui.bootstrap'
+        ,'ui.router'
+        ,'gdi2290.md5-service'
  
     ])
         
@@ -54,61 +57,103 @@
 
         //Main app - CONFIG
         .config(
-            ['$routeProvider', '$locationProvider', '$httpProvider',  'RestangularProvider', 'EnvironmentConfig', 
-            function (routerProvider, $locationProvider, httpProvider, RestangularProvider, EnvironmentConfig) {
+            ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',  'RestangularProvider', 'EnvironmentConfig',
+            function ($stateProvider, $urlRouterProvider,  $locationProvider, $httpProvider, RestangularProvider, EnvironmentConfig) {
                 $locationProvider.html5Mode(true);
                 $locationProvider.hashPrefix('!');
 
-
                 RestangularProvider.setBaseUrl(EnvironmentConfig.api);
-                RestangularProvider.setDefaultHeaders({ 'Content-Type': 'application/json' });
+                RestangularProvider.setDefaultHeaders({ 'Content-Type': 'application/json'});
                 
-                //http://blog.xebia.com/angular-reverse-url-construction/
-                routerProvider.when('/', {
-                    templateUrl: '/app/instaFlight/templates/buscaVooForm.html',
-                    controller: 'buscaVooFormController',
-                    name: 'buscaVooForm'
-                }).otherwise({ redirectTo: "/" });
 
-                routerProvider.when('/buscaVoo', {
-                    templateUrl: '/app/instaFlight/templates/buscaVoo.html',
-                    controller: 'buscaVooController',
-                    name: 'buscaVoo'
-                }).otherwise({ redirectTo: "/" }); 
+                $urlRouterProvider.otherwise('/home');
 
-                routerProvider.when('/reservaVoo', {
-                    templateUrl: '/app/instaFlight/templates/reservaVoo.html',
-                    controller: 'reservaVooController',
-                    name: 'reservaVoo'
-                }).otherwise({ redirectTo: "/" });
+                $stateProvider
+                    .state('home', {
+                        url: '/home',
+                        templateUrl: '/app/instaFlight/templates/buscaVooForm.html',
+                        controller: 'buscaVooFormController',
+                        data: {
+                            requireLogin: false
+                        }
+                    })
+                    .state('buscaVoo', {
+                        url: '/buscaVoo',
+                        templateUrl: '/app/instaFlight/templates/buscaVoo.html',
+                        controller: 'buscaVooController',
+                        data: {
+                            requireLogin: true
+                        }
+                    })
+                    .state('reservaVoo', {
+                        url: '/reservaVoo',
+                        templateUrl: '/app/instaFlight/templates/reservaVoo.html',
+                        controller: 'reservaVooController',
+                        data: {
+                            requireLogin: true
+                        }
+                });                       
+                 
+                $httpProvider.interceptors.push(function ($timeout, $q, $injector, $sessionStorage, authTokenFactory) {
+                    var loginModal, $http, $state;
 
-                routerProvider.when('/errorPage', {
-                    templateUrl: '/app/instaFlight/templates/pageError.html',
-                    controller: '',
-                    name: 'errorPage'
-                }).otherwise({ redirectTo: "/" }); 
+                    $timeout(function () {
+                    loginModal = $injector.get('loginModalService');
+                    $http = $injector.get('$http');
+                    $state = $injector.get('$state');
+                    });
 
-                routerProvider.when('/inputAutocomplete', {
-                    templateUrl: '/app/instaFlight/templates/inputAutocomplete.html',
-                    controller: '',
-                    name: 'inputAutocomplete'
-                }).otherwise({ redirectTo: "/" }); 
+                    return {
+                        request: function (config) {
+                            
+                            var token = authTokenFactory.getToken();
+                            if(token) config.headers.Authorization = "bearer " + token;
+                            
+                            return config || $q.when(config);
+                        },
+                        
+                        responseError: function (rejection) {
+                            if (rejection.status !== 401 && rejection.status !== 403) {
+                                return rejection
+                            }
+                            
+                            var deferred = $q.defer();
 
-                //Bootrstrap UI - Datepicker
-                /*angular.extend(datepickerProvider.defaults, {
-                    templateUrl: '/app/instaFlight/templates/calendarTemplate.html',
-                    placement: 'bottom-right',
-                    container: 'body',
-                    dateFormat: 'dd/MM/yyyy',
-                    autoclose: true,
-                    useNative: true,
-                    startWeek: 1,
-                    animation: false,
-                    iconLeft: 'glyphicon glyphicon-menu-left',
-                    iconRight: 'glyphicon glyphicon-menu-right'
-                });   */ 
+                            loginModal()
+                            .then(function () {
+                                deferred.resolve( $http(rejection.config) );
+                            })
+                            .catch(function () {
+                                $state.go('home');
+                                deferred.reject(rejection);
+                            });
 
-            }]);       
+                            return deferred.promise;
+
+                        }
+                    };
+                });
+                
+            }])
+            .run(function ($rootScope, $state, loginModalService, $sessionStorage) {
+                    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+                        var requireLogin = toState.data.requireLogin;
+
+                        if (requireLogin && typeof authTokenFactory.getToken() === undefined) {
+                            event.preventDefault();
+                            loginModal()
+                                .then(function () {
+                                    return $state.go(toState.name, toParams);
+                                })
+                                .catch(function () {
+                                    return $state.go('home');
+                                });
+                        
+                        }
+                    });
+            }); 
+
+                 
        
 })();
 

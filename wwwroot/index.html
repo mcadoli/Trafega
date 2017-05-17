@@ -117,7 +117,7 @@
 
         <div> 
             
-            <div ng-view>
+            <div ui-view>
                     
             </div>
         </div>
@@ -138,35 +138,34 @@
                 </div>
             </div>
         </footer>
-
         <!--Login-->
         <div id="travelo-login" class="travelo-login-box travelo-box">
-                <div class="login-social">
-                    <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                    <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
-                </div>
-                <div class="seperator"><label>OR</label></div>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="input-text full-width" placeholder="email address">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="input-text full-width" placeholder="password">
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="forgot-password pull-right">Forgot password?</a>
-                        <div class="checkbox checkbox-inline">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <div class="seperator"></div>
-                <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+            <div class="login-social">
+                <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
+                <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
             </div>
+            <div class="seperator"><label>OR</label></div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="input-text full-width" placeholder="email address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="input-text full-width" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <a href="#" class="forgot-password pull-right">Forgot password?</a>
+                    <div class="checkbox checkbox-inline">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div class="seperator"></div>
+            <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+        </div>
         <!--Fim Login-->
-
+        
         <!--Sign Up-->
         <div id="travelo-signup" class="travelo-signup-box travelo-box">
                 <div class="login-social">
@@ -271,23 +270,22 @@
        
         <!--Angular-->
         <script src="/bower_components/angular/angular.min.js"></script>  
+        <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="/bower_components/angular-i18n/angular-locale_pt-br.js"></script>
         <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
         <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-        <script src="/bower_components/angular-route/angular-route.min.js"></script> 
         <script src="/bower_components/restangular/dist/restangular.min.js"></script>
         <script src="/bower_components/angular-strap/dist/angular-strap.min.js"></script>
-
-        
         <script src="/bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
         <script src="/bower_components/angular-linq/angular-linq.min.js"></script>
         <script src="/bower_components/angular-filter/dist/angular-filter.min.js"></script>
-        <script src="/bower_components/angular-named-routes/dist/angular-named-routes.min.js"></script>
-        <script src="/bower_components/angular-route/angular-route.min.js"></script>
-       
+        <script src="/bower_components/ngstorage/ngStorage.min.js"></script>
+        
         <!--Components-->
         <script src="/bower_components/moment/moment.js"></script>
         <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="/bower_components/angular-md5/angular-md5.min.js"></script>
+        <script src="/bower_components/angular-ui-bootstrap/src/modal/modal.js"></script>
         <!--<script src="/bower_components/angular-ui-bootstrap/src/datepicker/datepicker.js"></script>-->
         <!--<script src="/bower_components/angular-ui-bootstrap/src/datepickerPopup/popup.js"></script>-->
 
@@ -311,8 +309,11 @@
 
         <!--Services-->
         <script src="/app/instaFlight/services/buscaVooService.js"></script>
+        <script src="/app/common/services/loginModalService.js"></script>
+        <script src="/app/common/services/authService.js"></script>
 
         <!--Factories-->
+        <script src="/app/common/factories/authTokenFactory.js"></script>
         <script src="/app/instaFlight/factories/messagesFactory.js"></script>
         <script src="/app/instaFlight/factories/vooRqFactory.js"></script>
 
@@ -330,11 +331,13 @@
 
         <!--Controllers-->
         <script src="/app/common/services/commonService.js"></script>  
+        <script src="/app/common/controllers/modalLoginController.js"></script>
         <script src="/app/instaFlight/controllers/messagesController.js"></script>  
         <script src="/app/instaFlight/controllers/buscaVooFormController.js"></script>
         <script src="/app/instaFlight/controllers/buscaVooController.js"></script>
         <script src="/app/instaFlight/controllers/reservaVooController.js"></script>
-        <script src="/app/instaFlight/controllers/demo.dateRangeController.js"></script>
+        
+        
 </body>
 </html>
 
