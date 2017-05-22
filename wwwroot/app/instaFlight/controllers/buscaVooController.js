@@ -3,8 +3,8 @@
     angular
         .module('gameFareApp')
         .controller('buscaVooController', 
-            ['$rootScope', '$scope', '$location', 'vooService', 'messagesFactory', '$window', 'commonService', '$http', '$filter', 'constants', 'vooRqFactory', 
-                function ($rootScope, $scope, $location,  vooService, messagesFactory, $window, commonService, $http, $filter, constants, vooRqFactory) {    
+            ['$rootScope', '$scope', '$location', 'vooService', 'messagesFactory', '$window', 'commonService', '$http', '$filter', 'constants', 'vooRqFactory', '$uibModal', 
+                function ($rootScope, $scope, $location,  vooService, messagesFactory, $window, commonService, $http, $filter, constants, vooRqFactory, $modal) {    
                     $scope.minDataPartida = new Date(); 
                     $scope.minDataChegada = new Date();
                     $scope.minDataChegada = $scope.minDataChegada.setDate($scope.minDataPartida.getDate());
@@ -86,6 +86,7 @@
                             }
                            
                             $scope.loading = false;
+                            console.log($scope.voos);
 
                             }).catch(function(response) {  
                                 $scope.loading = false;  
@@ -154,13 +155,15 @@
                         console.log('Valor Aposta:' + $scope.valorAposta);
                         vooService.apostar(voo).then(function(vooResponse){ 
                              messagesFactory.addMessage('Aposta realizada com sucesso.', 'alert alert-success', 0, false);
-                             $scope.btnApostaLabel = "APOSTADO";
+                             console.log(voo);
+                             $scope.btnApostaLabel = "APOSTAR";
+                             $modal.open({
+                                templateUrl: '/app/aposta/templates/apostaModalTemplate.html',
+                                controller: 'apostaController',
+                                controllerAs: 'apostaController'
+                            })
 
                         }).catch(function(response) { 
-                            if(response.status === 401)
-                            {
-                                $location.path('/modalLogin');
-                            } 
                             $scope.btnApostaLabel = "ERRO";  
                             messagesFactory.addMessage(response.data, 'alert alert-danger', 0, false); 
                         }); 

@@ -10,7 +10,7 @@ angular.module('gameFareApp').service('vooService', ["Restangular", "messagesFac
         };
 
         this.apostar = function(voo){ 
-            return Restangular.all("v1/voos").customPOST(voo, "apostar");
+            return Restangular.all("v1/aposta").customPOST(voo, "apostar");
         };
 
         

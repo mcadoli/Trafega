@@ -2,6 +2,7 @@
     <form name="formAposta" class="container" novalidate>
         <div id="main">
             <div class="row">
+                 
                 <div style="background-color: #ffffff" class="col-sm-8 col-md-3">
                         <h6 class="search-results-title"><i class="soap-icon-search"></i><b>{{qtdRegistrosFound}}</b> voos encontrados.</h6>
                        
@@ -77,6 +78,7 @@
                 <div class="col-sm-8 col-md-9"> 
                         <!-- Inicio Lista -->
                             <loading-content></loading-content>
+                                  
                             <article class="box" ng-repeat="voo in voos"> 
                                     
                                 <!--Começa Trechos -->
@@ -151,12 +153,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--Termina valor total-->          
+                                    <!--Termina valor total-->   
+                                   
                                 </div>   
                                 <!--Termina Trechos-->                    
                             </article>
+                           
                         </div> 
-                        <!-- Fim Lista -->       
+                        <!-- Fim Lista -->     
+                           
                 </div>
             </div>
          </div>  
@@ -206,7 +211,10 @@
             </form>
             <div class="seperator"></div>
             <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+
+           
     </div>  
+     
 </section>
 
     

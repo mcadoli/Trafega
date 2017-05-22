@@ -1,0 +1,8 @@
+ {
+    "LocalPartida": "", 
+    "LocalChegada": "",
+    "DataPartida": "yyyy-MM-dd",
+    "DataChegada": "yyyy-MM-dd",
+    "SomenteVoosDiretos": false,
+    "IdaVolta": true
+}

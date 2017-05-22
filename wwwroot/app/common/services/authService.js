@@ -28,28 +28,45 @@
 
       
 
-    this.login = function (loginData) {
+        var _login = function (loginData) {
 
-        var data = "grant_type=password&username=" + loginData.userName + "&password=" + $md5.createHash(loginData.password);
+            //var data = "grant_type=password&username=" + loginData.userName + "&password=" + $md5.createHash(loginData.password);
+            var data = "username=" +  loginData.userName +
+                           "&password=" + $md5.createHash(loginData.password)+
+                           "&grant_type=password" ;
 
-        var deferred = $q.defer();
+            var deferred = $q.defer();
 
-        $http.post(serviceBase + '/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-            authTokenFactory.setToken(response.access_token);
-            authTokenFactory.setUserName(loginData.userName);
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
+            $http.post(serviceBase + '/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(function (response) {
+                authTokenFactory.setToken(response.access_token);
+                authTokenFactory.setUserName(loginData.userName);
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
 
-            deferred.resolve(response);
+                deferred.resolve(response);
 
-        }).error(function (err, status) {
-            _logOut();
-            deferred.reject(err);
-        });
+            }).catch(function (err, status) {
+                _logOut();
+                deferred.reject(err);
+            });
 
-        return deferred.promise;
+            /*Restangular.allUrl("token", EnvironmentConfig.api + "/token")
+                                  .customPOST(data, "", {}, {'Content-Type': 'application/x-www-form-urlencoded'}).then(function (response) {
+                authTokenFactory.setToken(response.access_token);
+                authTokenFactory.setUserName(loginData.userName);
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
 
-    };
+                deferred.resolve(response);
+
+            }).catch(function (err, status) {
+                _logOut();
+                deferred.reject(err);
+            });;*/
+
+            return deferred.promise;
+
+        };
 
     var _logOut = function () {
 

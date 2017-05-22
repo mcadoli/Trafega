@@ -2,12 +2,10 @@
   <form ng-controller="modalLoginController">
     <input type="email" ng-model="loginData.userName" />
     <input type="password" ng-model="loginData.password" />
-    <button ng-click="submit(loginData, $event)">Submit</button>
+    <button ng-click="submit(loginData)">Submit</button>
   </form>
   <button ng-click="cancel()">Cancel</button>
-  <div >
-        <h6 class="color-text-error"> {{loginErroMessage}}</h6>
-  </div>
+  
 </div>
 
 <!--<section id="content">

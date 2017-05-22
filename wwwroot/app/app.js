@@ -82,7 +82,7 @@
                         templateUrl: '/app/instaFlight/templates/buscaVoo.html',
                         controller: 'buscaVooController',
                         data: {
-                            requireLogin: true
+                            requireLogin: false
                         }
                     })
                     .state('reservaVoo', {
@@ -95,14 +95,14 @@
                 });                       
                  
                 $httpProvider.interceptors.push(function ($timeout, $q, $injector, $sessionStorage, authTokenFactory) {
-                    var loginModal, $http, $state;
-
+                    var loginModal, $http, $state, Restangular;
+                    authTokenFactory.removeToken();
                     $timeout(function () {
-                    loginModal = $injector.get('loginModalService');
-                    $http = $injector.get('$http');
-                    $state = $injector.get('$state');
+                        loginModal = $injector.get('loginModalService');
+                        $http = $injector.get('Restangular');
+                        $state = $injector.get('$state');
                     });
-
+                    
                     return {
                         request: function (config) {
                             
