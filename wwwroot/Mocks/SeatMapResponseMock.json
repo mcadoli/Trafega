@@ -1,0 +1,156 @@
+{
+	"EnhancedSeatMapRS": {
+		"ApplicationResults": {
+			"status": "Complete",
+			"Success": [{}]
+		},
+		"SeatMap": [{
+			"changeOfGaugeInd": false,
+			"Equipment": "321",
+			"Flight": {
+				"destination": "LAX",
+				"origin": "DFW",
+				"DepartureDate": {
+					"localTime": "21:54:00.000",
+					"content": "2016-06-23"
+				},
+				"Marketing": [{
+					"carrier": "AA",
+					"content": "1023"
+				}]
+			},
+			"Cabin": [{
+				"firstRow": 8,
+				"lastRow": 23,
+				"CabinClass": {
+					"CabinType": "Economy",
+					"RBD": "Y",
+					"MarketingDescription": [
+						"PRICE PER SEAT:USD 27.54-USD 63.34"
+					]
+				},
+				"Row": [{
+					"RowNumber": 8,
+					"Seat": [{
+						"occupiedInd": false,
+						"inoperativeInd": false,
+						"premiumInd": false,
+						"chargeableInd": true,
+						"exitRowInd": false,
+						"restrictedReclineInd": false,
+						"noInfantInd": false,
+						"Number": "F",
+						"Occupation": [{
+							"Detail": {
+								"content": "SeatIsFree"
+							}
+						}],
+						"Limitations": [{
+							"Detail": {
+								"content": "SeatToBeLeftVacant/OfferedLast"
+							}
+						}],
+						"Facilities": [{
+								"Detail": {
+									"content": "LegSpaceSeat"
+								}
+							},
+							{
+								"Detail": {
+									"content": "ChargeableSeat"
+								}
+							}
+						],
+						"Price": [{
+							"TotalAmount": {
+								"currencyCode": "USD",
+								"decimalPlaces": 2,
+								"content": 63.34
+							},
+							"Taxes": [{
+								"Tax": {
+									"currencyCode": "USD",
+									"decimalPlaces": 2,
+									"content": 4.42
+								},
+								"TaxTypeRef": "taxType_1"
+							}],
+							"PriceTypeRef": "priceTypeDetail_1"
+						}]
+					}]
+				}],
+				"Column": [{
+						"Column": "A",
+						"Characteristics": [
+							"Window"
+						]
+					},
+					{
+						"Column": "B",
+						"Characteristics": [
+							"CenterSeat"
+						]
+					},
+					{
+						"Column": "C",
+						"Characteristics": [
+							"Aisle"
+						]
+					},
+					{
+						"Column": "D",
+						"Characteristics": [
+							"Aisle"
+						]
+					},
+					{
+						"Column": "E",
+						"Characteristics": [
+							"CenterSeat"
+						]
+					},
+					{
+						"Column": "F",
+						"Characteristics": [
+							"Window"
+						]
+					}
+				]
+			}],
+			"PriceList": {
+				"PriceTypeDetail": [{
+						"id": "priceTypeDetail_1",
+						"Code": "OC",
+						"Description": "Main Cabin Extra",
+						"SecondaryCode": {
+							"content": "MCE"
+						}
+					},
+					{
+						"id": "priceTypeDetail_2",
+						"Code": "OC",
+						"Description": "Preferred Seats",
+						"SecondaryCode": {
+							"content": "0B5"
+						}
+					}
+				]
+			},
+			"TaxTable": [{
+				"TaxType": [{
+					"id": "taxType_1",
+					"Code": "US"
+				}]
+			}]
+		}]
+	},
+	"Links": [{
+			"rel": "self",
+			"href": "https://api.sabre.com/v4.0.0/book/flights/seatmaps?mode=seatmaps"
+		},
+		{
+			"rel": "linkTemplate",
+			"href": "http://api.sabre.com/<version>/book/flights/seatmaps?mode=<mode>"
+		}
+	]
+}

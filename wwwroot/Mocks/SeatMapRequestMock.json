@@ -1,0 +1,31 @@
+{
+    "EnhancedSeatMapRQ": {
+        "SeatMapQueryEnhanced": {
+            "RequestType": "Payload",
+            "Flight": {
+                "destination": "EZE",
+                "origin": "DFW",
+                "DepartureDate": {
+                    "content": "2017-07-07"
+                },
+                "ArrivalDate": {
+                    "content": "2017-07-08"
+                },
+                "Operating": {
+                    "carrier": "AA",
+                    "content": "997"
+                },
+                "Marketing": [{
+                    "carrier": "AA",
+                    "content": "997"
+                }]
+            },
+            "CabinDefinition": {
+                "RBD": "Y"
+            }
+
+        }
+
+    }
+}
+

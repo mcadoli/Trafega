@@ -1,0 +1,8 @@
+{
+    "NomeCliente" : "Eduardo",
+    "VooDataPartida" : "2017-06-08",
+    "VooDataRetorno" : "2017-06-09",
+    "VooOrigem" : "LAX",
+    "VooDestino": "JFK",
+    "ValorAposta" : 100
+}
