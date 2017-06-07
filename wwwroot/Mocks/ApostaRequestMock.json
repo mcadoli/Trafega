@@ -8,6 +8,7 @@
     "CodigoCabine" : "Y",
     "DataChegada" : "2017-05-24T00:00:00",
     "DataPartida" : "2017-05-22T00:00:00",
+    "DataRetorno" : "2017-05-23T00:00:00",
     "DataRegistro" : "2017-05-22T14:35:07.5072204-03:00",
     "Impostos" : 84.52,
     "LinkApis" : "https://api.test.sabre.com/v1/shop/flights?origin=<origin>&destination=<destination>&departuredate=<departuredate>&returndate=<returndate>&offset=<offset>&limit=<limit>&sortby=<sortby>&order=<order>&sortby2=<sortby2>&order2=<order2>&minfare=<minfare>&maxfare=<maxfare>&includedcarriers=<includedcarriers>&excludedcarriers=<excludedcarriers>&outboundflightstops=<outboundflightstops>&inboundflightstops=<inboundflightstops>&outboundstopduration=<outboundstopduration>&inboundstopduration=<inboundstopduration>&outbounddeparturewindow=<outbounddeparturewindow>&outboundarrivalwindow=<outboundarrivalwindow>&inbounddeparturewindow=<inbounddeparturewindow>&inboundarrivalwindow=<inboundarrivalwindow>&onlineitinerariesonly=<onlineitinerariesonly>&eticketsonly=<eticketsonly>&includedconnectpoints=<includedconnectpoints>&excludedconnectpoints=<excludedconnectpoints>&pointofsalecountry=<pointofsalecountry>&passengercount=<passengercount>&enabletagging=<enabletagging>",
@@ -24,9 +25,7 @@
         "AeroportoPartidaNome" : "Los Angeles Intl",
         "CidadeChegada" : "New York",
         "CidadePartida" : "Los Angeles",
-        "CompanhiaAerea" : "Spirit Airlines",
-        "DataChegada" : "2017-05-23T09:01:00",
-        "DataPartida" : "2017-05-22T21:05:00",
+        "CompanhiaAerea" : "Spirit Airlines", 
         "DirecaoVoo" : "I",
         "Duracao" : "08:56:00",
         "QtdParadas" : 1,
@@ -45,6 +44,8 @@
                     "CodigoReserva" : "U",
                     "DataChegada" : "2017-05-23T05:02:00",
                     "DataPartida" : "2017-05-22T21:05:00",
+                    "MarketingAirlineCode": "NK",
+            		"OperatingAirlineCode": "NK",
                     "Duracao" : "04:57:00",
                     "GmtChegada" : -4,
                     "GmtPartida" : -7,
@@ -61,6 +62,8 @@
                     "AeroportoPartidaNome" : "Fort Lauderdale",
                     "CidadeChegada" : "New York",
                     "CidadePartida" : "Fort Lauderdale",
+                    "MarketingAirlineCode": "NK",
+            		"OperatingAirlineCode": "NK",
                     "Classe" : "Econômica",
                     "CodigoAviao" : 0,
                     "CodigoCompanhiaAerea" : "NK",
@@ -80,9 +83,10 @@
             "TrechoHeader" : false,
             "TrechoId" : 0,
             "Voo" : null,
-            "VooId" : 0,
-            "ValorAposta" : "277",
-            "ValorTarifa" : 519.06,
-            "ValorTotal" : 603.58
-        }]
+            "VooId" : 0  
+        }],
+		"VooId" : 0,
+		"ValorAposta" : "277",
+		"ValorTarifa" : 519.06,
+		"ValorTotal" : 603.58
 }
